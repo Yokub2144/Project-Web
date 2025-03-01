@@ -3,19 +3,19 @@
 function getCourses(): mysqli_result|bool
 {
     $conn = getConnection();
-    $sql = 'select * from courses';
+    $sql = 'select * from activity';
     $result = $conn->query($sql);
     return $result;
 }
-function enrollCourse(int $student_id, int $course_id): bool
+function enrollActivity(int $UserID, int $ActID, String $Status, bool $Checkedin): bool
 {
     $conn = getConnection();
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $check_sql = 'SELECT * FROM enrollment WHERE student_id = ? AND course_id = ?';
+    $check_sql = 'SELECT * FROM registration WHERE $UserID = ? AND $ActID = ?';
     $check_stmt = $conn->prepare($check_sql);
-    $check_stmt->bind_param('ii', $student_id, $course_id);
+    $check_stmt->bind_param('ii', $UserID, $ActID);
     $check_stmt->execute();
     $check_result = $check_stmt->get_result();
 
@@ -28,9 +28,9 @@ function enrollCourse(int $student_id, int $course_id): bool
         return false;
     }
 
-    $sql = 'INSERT INTO enrollment (student_id, course_id, enrollment_date) VALUES (?, ?, NOW())';
+    $sql = 'INSERT INTO registration (UserID, AvtID, Status, Checckedin) VALUES (?, ?, ?, ?)';
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ii', $student_id, $course_id);
+    $stmt->bind_param('ii', $UserID, $ActID, $Status, $Checkedin);
 
     if ($stmt->execute()) {
         $stmt->close();
@@ -43,7 +43,7 @@ function enrollCourse(int $student_id, int $course_id): bool
         return false;
     }
 }
-function dropcourse($student_id,$course_id):bool
+function dropcourse($UserID, $ActID):bool
 {
       
         $conn = getConnection();

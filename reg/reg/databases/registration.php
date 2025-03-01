@@ -8,7 +8,7 @@
 //     return $result;
 // }
 
-function getStudentEnrollmentByStudentId(int $studentId): mysqli_result|bool
+function getUserEnrollmentByUserId(int $UserID): mysqli_result|bool
 {
     $conn = getConnection();
     $sql = 'SELECT
