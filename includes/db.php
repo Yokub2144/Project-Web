@@ -4,8 +4,8 @@ function getConnection():mysqli
 {
     $hostname = 'localhost';
     $dbName = 'eventmanagement';
-    $username = 'demo';
-    $password = 'demo';
+    $username = 'admin';
+    $password = 'admin';
     $conn = new mysqli($hostname, $username, $password, $dbName);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -13,7 +13,7 @@ function getConnection():mysqli
     return $conn;
 }
 
-require_once DATABASE_DIR . '/students.php';
+require_once DATABASE_DIR . '/user.php';
 require_once DATABASE_DIR . '/authen.php';
-require_once DATABASE_DIR . '/courses.php';
-require_once DATABASE_DIR . '/enrollments.php';
+require_once DATABASE_DIR . '/activity.php';
+require_once DATABASE_DIR . '/registration.php';

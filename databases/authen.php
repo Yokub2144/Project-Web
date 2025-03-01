@@ -14,7 +14,7 @@ function login(String $username, String $password): array|bool
     }
     $row = $result->fetch_assoc();
 
-    if(password_verify($password, $row['password']))
+    if(password_verify($password, $row['Password']))
     {
         return $row;
     }else
