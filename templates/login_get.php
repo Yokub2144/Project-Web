@@ -189,7 +189,7 @@ body {
 .toggle {
     background-color: #512da8;
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background: linear-gradient(to right, #040613, #21105e);
     color: #fff;
     position: relative;
     left: -100%;
@@ -259,7 +259,7 @@ body {
                 
                 <div class="toggle-panel toggle-right">
                     <h1>Hello, Friend!</h1>
-                    <p>Register with your personal details to use all of site features</p>
+                    <p>Wellcome to Active Zone</p>
                 </div>
             </div>
         </div>

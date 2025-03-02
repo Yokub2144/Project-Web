@@ -1,7 +1,7 @@
 <section>
     <div class="container">
         <div class="left">
-            <img src="image.png" alt="Event Image">
+           <img src="//" alt="">
             <button class="button cancel">Cancel</button>
         </div>
         <div class="right">
