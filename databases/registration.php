@@ -80,3 +80,20 @@ function enrollActivity(int $UserID, int $ActID, string $Status): bool
         return false;
     }
 }
+function dropregistration($UserID, $ActID): bool
+{
+    $conn = getConnection();
+    $sql = 'DELETE FROM registration WHERE UserID = ? AND ActID = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ii', $UserID, $ActID);
+    if ($stmt->execute()) {
+        $stmt->close();
+        $conn->close();
+        return true;
+    } else {
+        error_log("Error dropping course: " . $stmt->error);
+        $stmt->close();
+        $conn->close();
+        return false;
+    }
+}

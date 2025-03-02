@@ -72,11 +72,53 @@
             </div>
         </div>
     </div>
+    <h2 class="text-center mt-5 mb-4" style="margin: 1%;">กิจกรรมที่สร้าง</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>ชื่อกิจกรรม</th>
+                            <th>วันเริ่มกิจกรรม</th>
+                            <th>วันสิ้นสุดกิจกรรม</th>
+                            <th>สถานะ</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data['createdActivities'] as $activity): ?>
+                            <tr>
+                                <td><?= $activity['Title'] ?></td>
+                                <td><?= $activity['StartDate'] ?></td>
+                                <td><?= $activity['EndDate'] ?></td>
+                                <td><?= $activity['Status'] ?></td>
+                                <td class="text-center">
+                                    <form action="/deleteActivity" method="post">
+                                        <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
+                                        <button type="submit" class="btn btn-warning btn-sm" onclick="return confirmSubmission_edit()">
+                                            แก้ไขกิจกรรม
+                                        </button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmSubmission_delete()">
+                                            ลบกิจกรรม
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script>
+    function confirmSubmission_delete() {
+        return confirm("คุณต้องการลบกิจกรรมนี้ใช่หรือไม่?");
+    }
     function confirmSubmission() {
-        return confirm("คุณต้องการถอนรายวิชานี้ใช่หรือไม่?");
+        return confirm("คุณต้องการยกเลิกการเข้าร่วมกิจกรรมนี้ใช่หรือไม่?");
     }
 </script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -122,6 +164,35 @@
     </div>
     </div>
     <h2 style="margin: 1%;">กิจกรรมที่เข้าร่วม</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ชื่อกิจกรรม</th>
+                <th>วันเริ่มกิจกรรม</th>
+                <th>วันสิ้นสุดกิจกรรม</th>
+                <th>ผู้สร้างกิจกรรม</th>
+                <th>สถานะ</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($data['registration'] as $registration): ?>
+                <tr>
+                    <td><?= $registration['Title'] ?></td>
+                    <td><?= $registration['StartDate'] ?></td>
+                    <td><?= $registration['EndDate'] ?></td>
+                    <td><?= $registration['CreatorName'] ?></td>
+                    <td><?= $registration['RegistrationStatus'] ?></td>
+                    <td><form action="/profile" method="post">
+                    <input type="hidden" name="UserID" value="<?= $data['result']['UserID'] ?>">
+                    <input type="hidden" name="ActID" value="<?= $registration['ActID'] ?>">
+                            <input type="submit" class="btn btn-danger" onclick="return confirmSubmission()" value="ยกเลิกการเข้าร่วมกิจกรรม">
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
     <table border="1">
         <thead>
             <tr>

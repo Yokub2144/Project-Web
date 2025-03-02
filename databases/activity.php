@@ -24,25 +24,6 @@ function getactivity(): array
     return $data;
 }
 
-
-
-function dropActivity($UserID, $ActID): bool
-{
-    $conn = getConnection();
-    $sql = 'DELETE FROM registration WHERE UserID = ? AND ActID = ?';
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ii', $UserID, $ActID);
-    if ($stmt->execute()) {
-        $stmt->close();
-        $conn->close();
-        return true;
-    } else {
-        error_log("Error dropping course: " . $stmt->error);
-        $stmt->close();
-        $conn->close();
-        return false;
-    }
-}
 function insertActivity($Title, $Description, $Location, $ImageURL, $StartDate, $EndDate, $Max, $CreateBy, $Status): bool
 {
     $conn = getConnection();
@@ -55,6 +36,36 @@ function insertActivity($Title, $Description, $Location, $ImageURL, $StartDate, 
         return true;
     } else {
         error_log("Error inserting course: " . $stmt->error);
+        $stmt->close();
+        $conn->close();
+        return false;
+    }
+}
+function getCreatedActivitiesByUserId($UserID) {
+    $conn = getConnection();
+    $sql = "SELECT ActID, Title, StartDate, EndDate, Status FROM activity WHERE CreateBy = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $UserID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $activities = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    $conn->close();
+    return $activities;
+}
+
+function dropAvtivity($ActID, $CreateBy): bool
+{
+    $conn = getConnection();
+    $sql = 'DELETE FROM Activity WHERE ActID = ? and CreateBy = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ii', $ActID, $CreateBy);
+    if ($stmt->execute()) {
+        $stmt->close();
+        $conn->close();
+        return true;
+    } else {
+        error_log("Error dropping course: " . $stmt->error);
         $stmt->close();
         $conn->close();
         return false;

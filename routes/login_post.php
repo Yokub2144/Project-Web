@@ -8,7 +8,7 @@ if($result){
     $unix_timestamp = time();
     $_SESSION['timestamp'] = $unix_timestamp;
     $_SESSION['UserID'] = $result['UserID'];
-    renderView('main_get', ['result' => $student]);
+    renderView('homeactivity_get', ['result' => $student]);
 }else{
     $_SESSION['message'] = 'Email or Password invalid';
     renderView('login_get');
