@@ -1,6 +1,6 @@
 <?php
 
-$result = getUserById($_SESSION['student_id']);
-$registration = getUserEnrollmentByUserId($_SESSION['student_id']);
+$result = getUserById($_SESSION['UserID']);
+$registration = getUserEnrollmentByUserId($_SESSION['UserID']);
 
 renderView('profile_get',['result' => $result, 'registration' => $registration]);
