@@ -28,16 +28,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/main">HOME</a>
+                        <a class="nav-link active" aria-current="page" href="/homeactivity">HOME</a>
                     </li>
                     <li class="nav-item">
                         <?php
                         if (isset($_SESSION['timestamp'])) {
                         ?>
                             <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/activity">Activity</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/addActivity">Addactivity</a>
                     </li>

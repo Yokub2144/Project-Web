@@ -2,33 +2,33 @@
 
 function getuser(): mysqli_result|bool
 {
-    $conn = getConnection(); // เรียกใช้ฟังก์ชัน getConnection จากไฟล์ db.php
-    $sql = 'select * from user'; // กำหนดคำสั่ง sql
-    $result = $conn->query($sql); // ประมวลผลคำสั่ง sql
-    return $result;// ส่งค่ากลับ
+    $conn = getConnection(); 
+    $sql = 'select * from user'; 
+    $result = $conn->query($sql); 
+    return $result;
 }
 
-function getUserById(int $id): array|bool // ประกาศฟังก์ชัน getStudentById รับค่า id เป็น int และส่งค่ากลับเป็น array หรือ bool
+function getUserById(int $id): array|bool 
 {
-    $conn = getConnection(); // เรียกใช้ฟังก์ชัน getConnection จากไฟล์ db.php
-    $sql = 'select * from user where UserId = ?'; // สร้าง SQL query เพื่อดึงข้อมูลนักเรียนจากตาราง students
-    $stmt = $conn->prepare($sql);// เตรียม prepared statement จาก SQL query 
-    $stmt->bind_param("i", $id);//  กำหนดค่าให้กับตัวแปร
-    $stmt->execute(); // ประมวลผลคำสั่ง sql
-    $result = $stmt->get_result(); // รับผลลัพธ์
-    if ($result->num_rows == 0) { // ถ้าไม่มีผลลัพธ์
-        return false; // ส่งค่ากลับ
+    $conn = getConnection(); 
+    $sql = 'select * from user where UserId = ?'; 
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows == 0) { 
+        return false; 
     }
-    return $result->fetch_assoc(); // ส่งค่ากลับ
+    return $result->fetch_assoc(); 
 }
 function updatePassword($new_password, $UserId): void {
 
-    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);// กำหนดค่าให้กับตัวแปร
-    $sql = "UPDATE user SET password = ? WHERE UserId = ?"; // ใช้ ? แทนพารามิเตอร์
-    try { // ลองทำ
-        $conn = getConnection(); // เรียกใช้ฟังก์ชัน getConnection จากไฟล์ db.php
-        $stmt = $conn->prepare($sql);// กำหนดคำสั่ง sql
-        $stmt->bind_param('si', $hashed_password,$UserId); // กำหนดค่าให้กับตัวแปร 
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+    $sql = "UPDATE user SET password = ? WHERE UserId = ?"; 
+    try { 
+        $conn = getConnection(); 
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('si', $hashed_password,$UserId); 
 
         $stmt->execute();
 
@@ -37,6 +37,25 @@ function updatePassword($new_password, $UserId): void {
 
     } catch(PDOException $e) {
         echo "เกิดข้อผิดพลาด: " . $e->getMessage();
+    }
+}
+function insertUser($name, $email, $password, $phone, $gender, $age, $imageProfileURL): bool
+{
+    $conn = getConnection();
+    $conn->query("alter table user AUTO_INCREMENT = 1");
+    $sql = 'INSERT INTO user (name, email, password, phone, gender, age, imageProfileURL) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('sssssis', $name, $email, $password, $phone, $gender, $age, $imageProfileURL);
+
+    if ($stmt->execute()) {
+        $stmt->close();
+        $conn->close();
+        return true;
+    } else {
+        error_log("Error inserting user: " . $stmt->error);
+        $stmt->close();
+        $conn->close();
+        return false;
     }
 }
 

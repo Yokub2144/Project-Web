@@ -8,6 +8,9 @@
             <h2>Create Event</h2>
             <form action="/addActivity" method="post">
                 <div class="form-group">
+                    <input type="text" name="ImageURL" placeholder="ImageURL">
+                </div>
+                <div class="form-group">
                     <input type="text" name="Title" placeholder="Name">
                 </div>
                 <div class="form-group">
@@ -22,6 +25,9 @@
                 <div class="form-group">
                     <input type="date" name="StartDate" placeholder="Start Date">
                     <input type="date" name="EndDate" placeholder="End Date">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Status" placeholder="Status">
                 </div>
                 <input type="hidden" name="UserID" value="<?= $UserID ?> ?>">
                 <input type="submit" value="เพิ่มกิจกรรม">
