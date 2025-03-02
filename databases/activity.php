@@ -35,3 +35,20 @@ function dropActivity($UserID, $ActID): bool
         return false;
     }
 }
+function insertActivity($Title, $Description, $Location, $ImageURL, $StartDate, $EndDate, $Max, $CreateBy, $Status): bool
+{
+    $conn = getConnection();
+    $sql = 'INSERT INTO activity (Title, Description, Location, ImageURL, StartDate, EndDate, Max, CreateBy, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ssssssiis', $Title, $Description, $Location, $ImageURL, $StartDate, $EndDate, $Max, $CreateBy, $Status);
+    if ($stmt->execute()) {
+        $stmt->close();
+        $conn->close();
+        return true;
+    } else {
+        error_log("Error inserting course: " . $stmt->error);
+        $stmt->close();
+        $conn->close();
+        return false;
+    }
+}

@@ -34,9 +34,12 @@
                         <?php
                         if (isset($_SESSION['timestamp'])) {
                         ?>
-                            <a class="nav-link active" aria-current="page" href="/profile">profile</a>
+                            <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/activity">Activity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/addActivity">Addactivity</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/logout">ออกจากระบบ</a>
