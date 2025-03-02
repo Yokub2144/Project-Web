@@ -4,7 +4,7 @@
 $activityData = getactivity();
 $UserID = $_SESSION['UserID']; 
 
-renderView('activity_get', [
+renderView('homeactivity_get', [
     'activity' => $activityData['activity'],
     'UserID' => $UserID
 ]);

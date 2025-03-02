@@ -5,7 +5,7 @@ declare(strict_types=1);
 // Constant values for router
 const ALLOW_METHODS = ['GET', 'POST'];
 const INDEX_URI = '';
-const INDEX_ROUNTE = 'home';
+const INDEX_ROUNTE = 'homeactivity';
 
 
 // Normalize URI

@@ -32,7 +32,7 @@ $UserID = $data['UserID']; // รับค่า student_id จาก controller
                     <td><?= $activity['Max'] ?></td>
                     <td><?= $activity['CreateByName'] ?></td>
                     <td>
-                        <form action="/activity" method="post">
+                        <form action="/homeactivity" method="post">
                             <input type="hidden" name="UserID" value="<?= $UserID ?> ?>">
                             <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
                             <input type="hidden" name="Actstatus" value="<?= $activity['Status'] ?>">
