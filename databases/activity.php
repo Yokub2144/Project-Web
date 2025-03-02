@@ -9,13 +9,21 @@ function getactivity(): array
     $result = $conn->query($sql);
     $result = $conn->query($sql);
     $activity = $result->fetch_all(MYSQLI_ASSOC);
-
-    $data = [
-        'activity' => $activity,
-        'UserID' => $_SESSION['UserID'] // Assuming you store UserID in session
-    ];
+    if (isset($_SESSION['UserId'])) {
+        $data = [
+            'activity' => $activity,
+            'UserID' => $_SESSION['UserID'] // Assuming you store UserID in session
+        ];
+        
+    }else{
+        $data = [
+            'activity' => $activity,
+            'UserID' => null
+        ];
+    }
     return $data;
 }
+
 
 
 function dropActivity($UserID, $ActID): bool

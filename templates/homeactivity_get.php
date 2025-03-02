@@ -214,8 +214,12 @@
 <body>
     <div class="container">
         <?php
-        $activity = $data['activity']; // รับค่า activities จาก controller
-        $UserID = $data['UserID']; // รับค่า student_id จาก controller
+        $activity = $data['activity'];
+        if(!isset($_SESSION['UserID'])){
+           $UserID = '';  
+        } else {
+            $UserID = $data['UserID']; 
+        }
         ?>
         <div style="text-align: center;">
             <img src="img/logo.png" alt="" style="width: 30%; height: auto; animation: logoAnimation 2s ease-in-out infinite;">
