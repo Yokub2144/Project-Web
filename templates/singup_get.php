@@ -282,7 +282,7 @@
             <div class="toggle-container_singup">
                 <div class="toggle">
                     <div class="toggle-panel toggle-right">
-                        <h1>Sing up</h1>
+                        <h1>Sign up</h1>
                         <p>Register with your personal details to use all of site features</p>
                     </div>
                 </div>
