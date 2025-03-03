@@ -58,8 +58,8 @@
         }
 
         .custom-btn:hover {
-            background-color: white;
-            color: black;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
         }
 
         .custom-btn:active {
