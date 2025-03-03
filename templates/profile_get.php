@@ -198,7 +198,7 @@
         </div>
 
         <h2 class="text-left mt-5 mb-4" style="color: #f2f2f2;">Now</h2>
-        <div class="table-responsive">
+        <div class="table">
             <div class="row">
                 <?php foreach ($data['registration'] as $registration): ?>
                     <div class="col-md-10 mb-4">
@@ -235,7 +235,7 @@
             </div>
         </div>
         <h2 class="text-left mt-5 mb-4" style="color: #f2f2f2;">Creator</h2>
-        <div class="table-responsive">
+        <div class="table">
             <div class="row">
                 <?php foreach ($data['createdActivities'] as $activity): ?>
                     <div class="col-md-11 mb-4">
