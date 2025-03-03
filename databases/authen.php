@@ -28,4 +28,5 @@ function login(String $username, String $password): array|bool
 function logout():void
 {
     unset($_SESSION['timestamp']);
+    unset($_SESSION['UserID']);
 }

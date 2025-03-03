@@ -1,9 +1,9 @@
 <?php
 
 $UserID = $_SESSION['UserID'];
-$result = getUserById($UserID);
+$User = getUserById($UserID);
 $registration = getUserEnrollmentByUserId($UserID);
 $createdActivities = getCreatedActivitiesByUserId($UserID);
 
-renderView('profile_get', ['result' => $result, 'registration' => $registration, 'createdActivities' => $createdActivities]);
+renderView('profile_get', ['User' => $User, 'registration' => $registration, 'createdActivities' => $createdActivities]);
 ?>

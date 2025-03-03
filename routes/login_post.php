@@ -4,11 +4,12 @@ $password = $_POST['password'];
 $result = login( $email, $password);
 
 if($result){
-    $student = getUserById($result['UserID']);
+    $User = getUserById($result['UserID']);
     $unix_timestamp = time();
     $_SESSION['timestamp'] = $unix_timestamp;
     $_SESSION['UserID'] = $result['UserID'];
-    renderView('homeactivity_get', ['result' => $student]);
+    $activityData = getactivity();
+    renderView('homeactivity_get', ['UserID' => $result['UserID'], 'activity' => $activityData['activity']]);
 }else{
     $_SESSION['message'] = 'Email or Password invalid';
     renderView('login_get');
