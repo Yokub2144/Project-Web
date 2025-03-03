@@ -7,39 +7,63 @@
     <title>Active Zone</title>
     <link rel="icon" href="img/logo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/Style/Style.css">
+    <!-- <link rel="stylesheet" href="/Style/Style.css"> -->
     <style>
         .navbar {
             padding: 15px 20px;
-            background-color: rgba(0, 0, 0, 0); /* โปร่งใส */
+            background-color: rgba(0, 0, 0, 0);
+            /* โปร่งใส */
         }
 
         .navbar-brand {
             font-size: 1.5rem;
             font-weight: bold;
-            color: white; 
+            color: white;
         }
 
         .nav-link {
             color: white !important;
         }
 
-        .navbar-toggler-icon {
-            background-color: white; 
-        }
-
-        .search-box {
+        .custom-input {
             width: 250px;
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: 2px solid white;
+            background-color: transparent;
+            color: white;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
-        .btn-outline-light {
-            color: white; /* ปุ่มค้นหาสีขาว */
-            border-color: white; /* ขอบปุ่มสีขาว */
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        .btn-outline-light:hover {
-            background-color: white; /* เมื่อเลื่อนเมาส์เหนือปุ่ม เปลี่ยนสีพื้นหลังเป็นขาว */
-            color: black; /* ฟอนต์สีดำเมื่อ hover */
+        .custom-input:hover,
+        .custom-input:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+        }
+
+        .custom-btn {
+            padding: 8px 20px;
+            border-radius: 25px;
+            border: 2px solid white;
+            background-color: transparent;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .custom-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .custom-btn:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
@@ -89,8 +113,8 @@
 
                 <!-- Search Bar -->
                 <form class="d-flex" action="/search" method="GET">
-                    <input class="form-control me-2 search-box" type="search" name="query" placeholder="Search..." aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
+                    <input class="custom-input me-2" type="text" name="keyword" placeholder="Enter keyword" value="<?= isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>">
+                    <button class="custom-btn" type="submit" value="Search">Search</button>
                 </form>
             </div>
         </div>

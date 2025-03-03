@@ -127,7 +127,7 @@
                             <input type="file" class="form-control" name="ImageURL" placeholder="ImageURL">
                         </div>
                         <div class="button-group">
-                            <button class="btn btn-danger">CANCEL</button>
+                            <a href="/homeactivity" class="btn btn-danger">CANCEL</a>
                         </div>
                     </div>
                 </div>

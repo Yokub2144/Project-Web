@@ -262,6 +262,12 @@
                                         </form>
                                             <form action="/deleteActivity" method="post" class="d-flex justify-content-end">
                                                 <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
+<<<<<<< HEAD
+=======
+                                                <button type="submit" class="btn btn-warning btn-sm mx-1" onclick="return confirmSubmission_edit()">
+                                                    Edit
+                                                </button>
+>>>>>>> a0a2ff13dc0c499e40315c76763de2712406c228
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmSubmission_delete()">
                                                     Delete
                                                 </button>

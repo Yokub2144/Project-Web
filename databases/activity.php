@@ -84,6 +84,7 @@ function dropAvtivity($ActID, $CreateBy): bool
     }
 }
 
+<<<<<<< HEAD
 function updateActivity($ActID, $Title, $Description, $Location, $ImageURL, $StartDate, $EndDate, $Max, $Status, $CreateBy) {
     $conn = getConnection();
     $sql = "UPDATE activity SET 
@@ -112,4 +113,33 @@ function updateActivity($ActID, $Title, $Description, $Location, $ImageURL, $Sta
     $conn->close();
     
     return $affectedRows > 0; // คืนค่า true ถ้ามีแถวที่ถูกอัปเดต
+=======
+function getactivityByKeyword(string $keyword): array
+{
+    $conn = getConnection();
+    $sql = "SELECT a.*, u.name as CreateByName 
+            FROM activity a 
+            JOIN user u ON a.CreateBy = u.UserID
+            WHERE a.Title LIKE ?";
+    $stmt = $conn->prepare($sql);
+    $keyword = '%' . $keyword . '%';
+    $stmt->bind_param('s', $keyword);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $activity = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    $conn->close();
+
+    if (isset($_SESSION['UserId'])) {
+        return [
+            'activity' => $activity,
+            'UserID' => $_SESSION['UserID']
+        ];
+    } else {
+        return [
+            'activity' => $activity,
+            'UserID' => null
+        ];
+    }
+>>>>>>> a0a2ff13dc0c499e40315c76763de2712406c228
 }
