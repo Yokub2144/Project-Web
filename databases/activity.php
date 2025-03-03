@@ -23,6 +23,18 @@ function getactivity(): array
     }
     return $data;
 }
+function getactivityByActID($ActID) {
+    $conn = getConnection();
+    $sql = "SELECT * FROM activity WHERE ActID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $ActID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $activity = $result->fetch_assoc();
+    $stmt->close();
+    $conn->close();
+    return $activity;
+}
 
 function insertActivity($Title, $Description, $Location, $ImageURL, $StartDate, $EndDate, $Max, $CreateBy, $Status): bool
 {
@@ -43,7 +55,7 @@ function insertActivity($Title, $Description, $Location, $ImageURL, $StartDate, 
 }
 function getCreatedActivitiesByUserId($UserID) {
     $conn = getConnection();
-    $sql = "SELECT ActID, Title, StartDate, EndDate, Status FROM activity WHERE CreateBy = ?";
+    $sql = "SELECT * FROM activity WHERE CreateBy = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $UserID);
     $stmt->execute();
@@ -57,7 +69,7 @@ function getCreatedActivitiesByUserId($UserID) {
 function dropAvtivity($ActID, $CreateBy): bool
 {
     $conn = getConnection();
-    $sql = 'DELETE FROM Activity WHERE ActID = ? and CreateBy = ?';
+    $sql = 'DELETE FROM activity WHERE ActID = ? and CreateBy = ?';
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('ii', $ActID, $CreateBy);
     if ($stmt->execute()) {
@@ -70,4 +82,34 @@ function dropAvtivity($ActID, $CreateBy): bool
         $conn->close();
         return false;
     }
+}
+
+function updateActivity($ActID, $Title, $Description, $Location, $ImageURL, $StartDate, $EndDate, $Max, $Status, $CreateBy) {
+    $conn = getConnection();
+    $sql = "UPDATE activity SET 
+            Title = ?, 
+            Description = ?, 
+            Location = ?, 
+            ImageURL = ?, 
+            StartDate = ?, 
+            EndDate = ?, 
+            Max = ?, 
+            Status = ? 
+            WHERE ActID = ? AND CreateBy = ?";
+    $stmt = $conn->prepare($sql);
+    
+    if (!$stmt) {
+        error_log("SQL Error: " . $conn->error); // บันทึกข้อผิดพลาด SQL
+        return false;
+    }
+    
+    $stmt->bind_param('ssssssiisi', $Title, $Description, $Location, $ImageURL, $StartDate, $EndDate, $Max, $Status, $ActID, $CreateBy);
+    $stmt->execute();
+    
+    // ตรวจสอบว่ามีแถวที่ถูกอัปเดตหรือไม่
+    $affectedRows = $stmt->affected_rows;
+    $stmt->close();
+    $conn->close();
+    
+    return $affectedRows > 0; // คืนค่า true ถ้ามีแถวที่ถูกอัปเดต
 }

@@ -237,7 +237,8 @@
         <h2 class="text-left mt-5 mb-4" style="color: #f2f2f2;">Creator</h2>
         <div class="table">
             <div class="row">
-                <?php foreach ($data['createdActivities'] as $activity): ?>
+                
+                <?php $data['createdActivities']; foreach ($data['createdActivities'] as $activity): ?>
                     <div class="col-md-11 mb-4">
                         <div class="card" style="background-color: rgba(60, 73, 85, 0); color: #f2f2f2;">
                             <div class="row ">
@@ -253,11 +254,14 @@
                                         <p class="card-text"><strong>วันสิ้นสุดกิจกรรม :</strong> <?= $activity['EndDate'] ?></p>
                                         <p class="card-text"><strong>สถานะ:</strong> <?= $activity['Status'] ?></p>
                                         <div>
+                                        <form action="/editActivity" method="get" class="d-flex justify-content-end">
+                                            <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                Edit
+                                            </button>
+                                        </form>
                                             <form action="/deleteActivity" method="post" class="d-flex justify-content-end">
                                                 <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
-                                                <button type="submit" class="btn btn-warning btn-sm mx-1" onclick="return confirmSubmission_edit()">
-                                                    Creator
-                                                </button>
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmSubmission_delete()">
                                                     Delete
                                                 </button>
