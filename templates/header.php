@@ -82,7 +82,7 @@
                             <a class="nav-link" href="/login">Sign In</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/signup">Sign Up</a>
+                            <a class="nav-link" href="/singup">Sign Up</a>
                         </li>
                     <?php endif; ?>
                 </ul>
