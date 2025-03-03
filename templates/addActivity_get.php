@@ -122,7 +122,7 @@
                 <div class="col-md-4 left-box">
                     <div class="card-body text-center">
                         <h2 class="card-title mb-4" style="font-size: 20px;">CREATE EVENT</h2>
-                        <img src="img/poster.png" class="img-fluid rounded-start mb-3" alt="Event Image">
+                        <img src="img/5.png" class="img-fluid rounded-start mb-3" alt="Event Image">
                         <div class="form-group mt-3">
                             <input type="file" class="form-control" name="ImageURL" placeholder="ImageURL">
                         </div>
