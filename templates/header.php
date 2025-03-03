@@ -24,10 +24,6 @@
             color: white !important;
         }
 
-        .navbar-toggler-icon {
-            background-color: white; 
-        }
-
         .search-box {
             width: 250px;
         }
@@ -89,8 +85,8 @@
 
                 <!-- Search Bar -->
                 <form class="d-flex" action="/search" method="GET">
-                    <input class="form-control me-2 search-box" type="search" name="query" placeholder="Search..." aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
+                    <input class="form-control me-2" type="text" name="keyword" placeholder="Enter keyword" value="<?= isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>">
+                    <button class="btn btn-outline-light" type="submit" value="Search" >Search</button>
                 </form>
             </div>
         </div>
