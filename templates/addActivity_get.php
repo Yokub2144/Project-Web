@@ -146,14 +146,10 @@
                                 <label for="Location" class="form-label">Location</label>
                                 <input type="text" class="form-control" name="Location" placeholder="Location">
                             </div>
-                            <div class="form-group mb-3 row">
+                            <div class="form-group mb-3 ">
                                 <div class="col-md-6">
                                     <label for="Max" class="form-label">Maximum</label>
                                     <input type="number" class="form-control" name="Max" placeholder="Maximum">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="Type" class="form-label">Type</label>
-                                    <input type="text" class="form-control" name="Type" placeholder="Type">
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
@@ -168,7 +164,10 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="Status" class="form-label">Status</label>
-                                <input type="text" class="form-control" name="Status" placeholder="Status">
+                                <select class="form-control" name="Status">
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
                             </div>
                             <input type="hidden" name="UserID" value="<?= $UserID ?>">
                             <div class="button-group">

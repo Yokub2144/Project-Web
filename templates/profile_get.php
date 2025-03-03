@@ -234,6 +234,7 @@
                 <?php endforeach; ?>
             </div>
         </div>
+<<<<<<< Updated upstream
         <h2 class="text-left mt-5 mb-4" style="color: #f2f2f2;">Creator</h2>
         <div class="table">
             <div class="row">
@@ -270,6 +271,48 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
+=======
+    </div>
+    <h2 class="text-center mt-5 mb-4" style="margin: 1%;">กิจกรรมที่สร้าง</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>ชื่อกิจกรรม</th>
+                            <th>วันเริ่มกิจกรรม</th>
+                            <th>วันสิ้นสุดกิจกรรม</th>
+                            <th>สถานะ</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data['createdActivities'] as $activity): ?>
+                            <tr>
+                                <td><?= $activity['Title'] ?></td>
+                                <td><?= $activity['StartDate'] ?></td>
+                                <td><?= $activity['EndDate'] ?></td>
+                                <td><?= $activity['Status'] ?></td>
+                                <td class="text-center">
+                                    <form action="/editActivity" method="post">
+                                        <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
+                                        <button type="submit" class="btn btn-warning btn-sm" onclick="return confirmSubmission_edit()">
+                                            แก้ไขกิจกรรม
+                                        </button>
+                                    </form>
+                                    <form action="/deleteActivity" method="post">
+                                        <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmSubmission_delete()">
+                                            ลบกิจกรรม
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+>>>>>>> Stashed changes
             </div>
         </div>
         <script>
