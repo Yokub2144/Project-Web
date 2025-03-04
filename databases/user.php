@@ -58,4 +58,31 @@ function insertUser($name, $email, $password, $phone, $gender, $age, $imageProfi
         return false;
     }
 }
+function updateUserStatus($UserID, $Status, $ActID) {
+    $conn = getConnection();
 
+    // ตรวจสอบว่า user_id นี้เข้าร่วมกิจกรรม 125 หรือไม่
+    $sql = "SELECT * FROM registration WHERE UserID = ? AND ActID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $UserID, $ActID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {  // ถ้าผู้ใช้เข้าร่วมกิจกรรม 125
+        // อัพเดทสถานะของผู้ใช้ในกิจกรรม 125
+        $update_sql = "UPDATE User_Event SET $Status = ? WHERE UserID = ? AND ActID = ?";
+        $update_stmt = $conn->prepare($update_sql);
+        $update_stmt->bind_param("sii", $Status, $UserID, $ActID);
+        if ($update_stmt->execute()) {
+            header('Location: /approval_at?eid='.$ActID);
+        } else {
+            header('Location: /approval_at?eid='.$ActID);
+            exit;
+        }
+        $update_stmt->close();
+    }
+
+    // ปิดการเชื่อมต่อฐานข้อมูล
+    $stmt->close();
+    $conn->close();
+}

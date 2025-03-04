@@ -97,3 +97,18 @@ function dropregistration($UserID, $ActID): bool
         return false;
     }
 }
+function joinActivity($ActID) {
+    $conn = getConnection();
+    $sql = "SELECT u.UserID, u.Name, u.Email, u.Age, r.Status, r.ActID
+            FROM user u 
+            JOIN registration r ON u.UserID = r.UserID 
+            WHERE r.ActID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $ActID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $users = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    $conn->close();
+    return $users;
+}

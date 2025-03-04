@@ -1,7 +1,7 @@
 <?php
 $CreateBy = $_SESSION['UserID'];
 $ActID = (int)$_POST['ActID'];
-if (dropAvtivity($ActID, $CreateBy)) {
+if (dropActivity($ActID, $CreateBy)) {
     $_SESSION['alert'] = 'ลบกิจกรรมสำเร็จ';
 } else {
     $_SESSION['alert'] = 'เกิดข้อผิดพลาดในการลบกิจกรรมสำเร็จ';
