@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activity Participants</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #3a0ca3);
+            color: white;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+        }
+        .table {
+            color: white;
+        }
+        .table thead {
+            background: #3a0ca3;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -23,7 +39,7 @@
             <?php if ($ActID && !empty($users)): ?>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
-                        <thead class="table-dark">
+                        <thead>
                             <tr>
                                 <th>UserID</th>
                                 <th>Name</th>

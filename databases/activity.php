@@ -103,3 +103,32 @@ function updateActivity($ActID, $Title, $Description, $Location, $ImageURL, $Sta
         return false;
     }
 }
+
+function getactivityByKeyword(string $keyword): array
+{
+    $conn = getConnection();
+    $sql = "SELECT a.*, u.name as CreateByName 
+            FROM activity a 
+            JOIN user u ON a.CreateBy = u.UserID
+            WHERE a.Title LIKE ?";
+    $stmt = $conn->prepare($sql);
+    $keyword = '%' . $keyword . '%';
+    $stmt->bind_param('s', $keyword);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $activity = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    $conn->close();
+
+    if (isset($_SESSION['UserId'])) {
+        return [
+            'activity' => $activity,
+            'UserID' => $_SESSION['UserID']
+        ];
+    } else {
+        return [
+            'activity' => $activity,
+            'UserID' => null
+        ];
+    }
+}

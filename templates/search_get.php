@@ -128,8 +128,8 @@
                                     <?php if ($isRegistered): ?>
                                         <p class="registered-status"><strong>คุณได้ลงทะเบียนแล้ว</strong></p>
                                     <?php else: ?>
-                                        <form action="/routes/register_activity.php" method="post">
-                                            <input type="hidden" name="UserID" value="<?= isset($data['UserID']) ? $data['UserID'] : '' ?>">
+                                        <form action="/homeactivity" method="post">
+                                            <input type="hidden" name="UserID" value="<?= $_SESSION['UserID'] ?>">
                                             <input type="hidden" name="ActID" value="<?= $row['ActID'] ?>">
                                             <input type="hidden" name="Actstatus" value="<?= $row['Status'] ?>">
                                             <input type="hidden" name="regstatus" value="Pending">
