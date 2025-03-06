@@ -1,0 +1,87 @@
+
+body {
+    background-image: url('img/2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.activity-card {
+    background-color: rgba(10, 8, 21, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.activity-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.activity-card img:hover {
+    opacity: 0.8;
+}
+
+.activity-card-title {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #FF3636;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.activity-card-details {
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+.register-button {
+    border-radius: 20px;
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.register-button:hover {
+    background-color: #219653;
+}
+
+.register-button:active {
+    transform: scale(0.95);
+}
+
+.registered-status {
+    color: #dc3545;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

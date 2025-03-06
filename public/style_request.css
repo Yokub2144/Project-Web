@@ -1,0 +1,16 @@
+
+        body {
+            background-image: url(img/2.png);
+            background-size: cover;
+            color: white;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+        }
+        .table {
+            color: white;
+        }
+        .table thead {
+            background: #3a0ca3;
+        }

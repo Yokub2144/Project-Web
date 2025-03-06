@@ -7,65 +7,8 @@
     <title>Active Zone</title>
     <link rel="icon" href="img/logo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="/Style/Style.css"> -->
-    <style>
-        .navbar {
-            padding: 15px 20px;
-            background-color: rgba(0, 0, 0, 0);
-            /* โปร่งใส */
-        }
-
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        .nav-link {
-            color: white !important;
-        }
-
-        .custom-input {
-            width: 250px;
-            padding: 8px 12px;
-            border-radius: 20px;
-            border: 2px solid white;
-            background-color: transparent;
-            color: white;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-        }
-
-        .custom-input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .custom-input:hover,
-        .custom-input:focus {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            outline: none;
-        }
-
-        .custom-btn {
-            padding: 8px 20px;
-            border-radius: 25px;
-            border: 2px solid white;
-            background-color: transparent;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .custom-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        .custom-btn:active {
-            transform: scale(0.95);
-        }
-    </style>
+    <link rel="stylesheet" href="style_header.css">
+ 
 </head>
 
 <body>
@@ -99,7 +42,7 @@
                             <a class="nav-link" href="/addActivity">Add Activity</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-danger" href="/logout">Logout</a>
+                            <a class="nav-link " href="/logout">Logout</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
