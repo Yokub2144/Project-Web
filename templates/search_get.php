@@ -115,6 +115,7 @@
                                     <p class="activity-card-details"><strong>จำนวนสูงสุด:</strong> <?= $row['Max'] ?></p>
                                     <p class="activity-card-details"><strong>ผู้สร้าง:</strong> <?= $row['CreateByName'] ?></p>
                                     <?php
+                                    if(isset($_SESSION['UserID'])):
                                     $isRegistered = false;
                                     if (isset($data['registrations'])) {
                                         foreach ($data['registrations'] as $registration) {
@@ -135,6 +136,9 @@
                                             <input type="hidden" name="regstatus" value="Pending">
                                             <input type="submit" name="register" value="ลงทะเบียน" class="register-button" onclick="return confirm('คุณต้องการลงทะเบียนวิชานี้ใช่หรือไม่?')">
                                         </form>
+                                    <?php endif; ?>
+                                    <?php else: ?>
+                                        <p class="text-center text-danger"><strong>กรุณาล็อกอินก่อน</strong></p>
                                     <?php endif; ?>
                                 </div>
                             </div>

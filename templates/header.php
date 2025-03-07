@@ -65,6 +65,11 @@
         .custom-btn:active {
             transform: scale(0.95);
         }
+
+        .dropdown-menu {
+            left: -100px;
+            /* ปรับค่าตามที่ต้องการ */
+        }
     </style>
 </head>
 
@@ -111,11 +116,30 @@
                     <?php endif; ?>
                 </ul>
 
-                <!-- Search Bar -->
-                <form class="d-flex" action="/search" method="GET">
-                    <input class="custom-input me-2" type="text" name="keyword" placeholder="Enter keyword" value="<?= isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>">
-                    <button class="custom-btn" type="submit" value="Search">Search</button>
                 </form>
+                <formclass="d-flex" action="/searchBydate" method="post">
+                    
+                </form>
+                <!-- Search Bar -->
+                <form class="d-flex" action="/search" method="post">
+                    <input class="custom-input me-2" type="text" name="keyword" placeholder="Enter keyword" value="<?= isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>">
+                    <div class="dropdown">
+                        <button class="custom-btn dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-filter"></i> Filter
+                        </button>
+                        <ul class="dropdown-menu p-1" aria-labelledby="filterDropdown">
+                            <li>
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" id="startDate" name="startDate">
+                            </li>
+                            <li>
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input type="date" class="form-control" id="endDate" name="endDate">
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="custom-btn " type="submit" value="Search">Search</button>
+
             </div>
         </div>
     </nav>

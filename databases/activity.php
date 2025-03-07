@@ -104,6 +104,14 @@ function updateActivity($ActID, $Title, $Description, $Location, $ImageURL, $Sta
     }
 }
 
+function handleSearch() {
+    if (!isset($_POST['keyword']) || $_POST['keyword'] == '') {
+        return getactivity();
+    } else {
+        return getactivityByKeyword($_POST['keyword']);
+    }
+}
+
 function getactivityByKeyword(string $keyword): array
 {
     $conn = getConnection();
@@ -114,6 +122,33 @@ function getactivityByKeyword(string $keyword): array
     $stmt = $conn->prepare($sql);
     $keyword = '%' . $keyword . '%';
     $stmt->bind_param('s', $keyword);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $activity = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    $conn->close();
+
+    if (isset($_SESSION['UserId'])) {
+        return [
+            'activity' => $activity,
+            'UserID' => $_SESSION['UserID']
+        ];
+    } else {
+        return [
+            'activity' => $activity,
+            'UserID' => null
+        ];
+    }
+}
+function getActivityByDate(string $startDate, string $endDate): array
+{
+    $conn = getConnection();
+    $sql = "SELECT a.*, u.name as CreateByName 
+            FROM activity a 
+            JOIN user u ON a.CreateBy = u.UserID
+            WHERE a.StartDate >= ? AND a.EndDate <= ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ss', $startDate, $endDate);
     $stmt->execute();
     $result = $stmt->get_result();
     $activity = $result->fetch_all(MYSQLI_ASSOC);
