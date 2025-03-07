@@ -7,6 +7,7 @@
     <title>Active Zone</title>
     <link rel="icon" href="img/logo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<<<<<<< HEAD
     <!-- <link rel="stylesheet" href="/Style/Style.css"> -->
     <style>
         .navbar {
@@ -71,6 +72,10 @@
             /* ปรับค่าตามที่ต้องการ */
         }
     </style>
+=======
+    <link rel="stylesheet" href="/CSS/style_header.css">
+ 
+>>>>>>> 6205b9d8a41ff70004237d6a82911859190231d0
 </head>
 
 <body>
@@ -104,7 +109,7 @@
                             <a class="nav-link" href="/addActivity">Add Activity</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-danger" href="/logout">Logout</a>
+                            <a class="nav-link " href="/logout">Logout</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">

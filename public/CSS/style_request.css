@@ -1,0 +1,70 @@
+/* พื้นหลัง */
+body {
+    background-image: url('/img/2.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* การ์ดหลัก */
+.card {
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* หัวข้อ */
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #f4a261;
+}
+
+/* ตาราง */
+.table {
+    color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* หัวตาราง */
+.table thead {
+    background: linear-gradient(135deg, #3a0ca3, #7209b7);
+    color: white;
+    font-weight: bold;
+}
+
+/* ช่องข้อมูล */
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ไฮไลต์แถวเมื่อเมาส์ชี้ */
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transition: 0.3s ease-in-out;
+}
+
+/* ป้ายแสดงสถานะ */
+.badge-success {
+    background-color: #2ecc71 !important;
+}
+
+.badge-secondary {
+    background-color: #7f8c8d !important;
+}
+
+/* กล่องแจ้งเตือน */
+.alert {
+    border-radius: 8px;
+    font-weight: bold;
+}
