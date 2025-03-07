@@ -7,7 +7,7 @@
     <title>Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <link rel="stylesheet" href="style_profile.css">
+    <link rel="stylesheet" href="/CSS/style_profile.css">
 </head>
 
 <body>

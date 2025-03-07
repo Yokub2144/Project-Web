@@ -9,18 +9,17 @@
         }
 
         body {
-            background-image: url('img/2.png');
+            background-image: url('/img/2.png');
             background-size: cover;
+            background-position: center;
             height: 100vh;
         }
 
         .container {
             border-radius: 30px;
             width: 900px;
-            /* Increased width */
             max-width: 100%;
             min-height: 300px;
-            /* Reduced height */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -29,12 +28,10 @@
 
         .card {
             background-color: rgba(106, 99, 99, 0.2);
-            /* Adjust the alpha value (0.5 for 50% transparency) */
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 900px;
-            /* Increased width */
             overflow-y: auto;
         }
 

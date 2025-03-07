@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Event</title>
-    <link rel="stylesheet" href="style_addActivity.css">
+    <link rel="stylesheet" href="/CSS/style_addActivity.css">
     
 </head>
 

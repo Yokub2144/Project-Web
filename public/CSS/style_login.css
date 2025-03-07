@@ -5,15 +5,13 @@
 margin: 0;
 padding: 0;
 box-sizing: border-box;
-font-family: 'Montserrat', sans-serif;
+font-family: 'Roboto', sans-serif;
 }
 
 body {
-background-image: url('img/2.png');
-background-size: cover;
-/*align-items: center;
-justify-content: center;
-flex-direction: column;*/
+    background-image: url('/img/2.png');
+    background-size: cover;
+    background-position: center;
 height: 100vh;
 }
 

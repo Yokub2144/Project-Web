@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style_home.css">
+    <link rel="stylesheet" href="/CSS/style_home.css">
     
 </head>
 
@@ -34,47 +34,31 @@
                 at your fingertips!
             </p>
             <br>
-            <a href="#"><button class="Explore-button">Explore</button></a>
+            <a href="#"><button class="Explore-button" style="margin-bottom: 30px;">Explore</button></a>
         </div>
 
-        <div class="activity-list-wrapper">
-            <button class="nav-button prev" onclick="scrollActivities(-1)">&#9664;</button>
-            <div class="activity-list">
-                <?php if (empty($activity)): ?>
-                    <p class="no-activity">ไม่พบข้อมูลกิจกรรม</p>
-                <?php else: ?>
-                    <?php foreach ($activity as $activityItem): ?>
-                        <div class="activity-card">
-                            <!-- กดคลิกที่รูปแล้วเพื่อดูรายละเอียด -->
-                            <!-- <a href="/activity_detail.php?id=<?= $activityItem['ActID'] ?>"> -->
-                            <a href="#"> <!-- เวลาใช้ลบอันนี้ -->
-                                <!-- ฟิกค่ารูปจากโฟลเดอร์ img ที่ชื่อ poster.png  -->
-                                <img src="img/poster.png" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; transition: opacity 0.3s ease;" alt="<?= $activityItem['Title'] ?>"
-                                    onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
-
-                                <!-- รับค่าจาก controller -->
-                                <!-- <img src="<?= $activityItem['ImageUrl'] ?>" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px;" alt="<?= $activityItem['Title'] ?>"> -->
-                                 
-                            </a>
-                            <h2 class="activity-card-title"><?= $activityItem['Title'] ?></h2>
-                            <p class="activity-card-details"><strong>รายละเอียด:</strong> <?= $activityItem['Description'] ?></p>
-                            <p class="activity-card-details"><strong>สถานที่:</strong> <?= $activityItem['Location'] ?></p>
-                            <p class="activity-card-details"><strong>วันที่เริ่ม:</strong> <?= $activityItem['StartDate'] ?></p>
-                            <p class="activity-card-details"><strong>วันที่สิ้นสุด:</strong> <?= $activityItem['EndDate'] ?></p>
-                            <p class="activity-card-details"><strong>จำนวนสูงสุด:</strong> <?= $activityItem['Max'] ?></p>
-                            <p class="activity-card-details"><strong>ผู้สร้าง:</strong> <?= $activityItem['CreateByName'] ?></p>
-                            <form action="/homeactivity" method="post">
-                                <input type="hidden" name="UserID" value="<?= $UserID ?>">
-                                <input type="hidden" name="ActID" value="<?= $activityItem['ActID'] ?>">
-                                <input type="hidden" name="Actstatus" value="<?= $activityItem['Status'] ?>">
-                                <input type="hidden" name="regstatus" value="<?= 'Pending' ?>">
-                                <input type="submit" name="register" value="ลงทะเบียน" class="register-button" onclick="return confirmSubmission()">
-                            </form>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-            <button class="nav-button next" onclick="scrollActivities(1)">&#9654;</button>
+        <div class="activity-grid">
+            <?php if (empty($activity)) : ?>
+                <p class="no-activity">ไม่พบข้อมูลกิจกรรม</p>
+            <?php else : ?>
+                <?php foreach ($activity as $activityItem) : ?>
+                    <div class="activity-card">
+                        <a href="#">
+                            <img src="img/poster.png" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; transition: opacity 0.3s ease;" alt="<?= $activityItem['Title'] ?>" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
+                        </a>
+                        <h2 class="activity-card-title"><?= $activityItem['Title'] ?></h2>
+                        <p class="activity-card-details"><strong>รายละเอียด:</strong> <?= $activityItem['Description'] ?></p>
+                        <p class="activity-card-details"><strong>วันที่เริ่ม:</strong> <?= $activityItem['StartDate'] ?></p>
+                        <p class="activity-card-details"><strong>วันที่สิ้นสุด:</strong> <?= $activityItem['EndDate'] ?></p>
+                        <form action="/homeactivity" method="post">
+                            <input type="hidden" name="UserID" value="<?= $UserID ?>">
+                            <input type="hidden" name="ActID" value="<?= $activityItem['ActID'] ?>">
+                            <input type="hidden" name="Actstatus" value="<?= $activityItem['Status'] ?>">
+                            <input type="hidden" name="regstatus" value="<?= 'Pending' ?>">
+                        </form>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 
