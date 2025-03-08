@@ -14,8 +14,7 @@ function getactivity(): array
             'activity' => $activity,
             'UserID' => $_SESSION['UserID'] // Assuming you store UserID in session
         ];
-        
-    }else{
+    } else {
         $data = [
             'activity' => $activity,
             'UserID' => null
@@ -24,7 +23,8 @@ function getactivity(): array
     return $data;
 }
 
-function getactivityByActID($ActID) {
+function getactivityByActID($ActID)
+{
     $conn = getConnection();
     $sql = "SELECT * FROM activity WHERE ActID = ?";
     $stmt = $conn->prepare($sql);
@@ -55,7 +55,8 @@ function insertActivity($Title, $Description, $Location, $ImageURL, $StartDate, 
     }
 }
 
-function getCreatedActivitiesByUserId($UserID) {
+function getCreatedActivitiesByUserId($UserID)
+{
     $conn = getConnection();
     $sql = "SELECT * FROM activity WHERE CreateBy = ?";
     $stmt = $conn->prepare($sql);
@@ -104,11 +105,20 @@ function updateActivity($ActID, $Title, $Description, $Location, $ImageURL, $Sta
     }
 }
 
-function handleSearch() {
+function SearchBykeyword()
+{
     if (!isset($_POST['keyword']) || $_POST['keyword'] == '') {
         return getactivity();
     } else {
         return getactivityByKeyword($_POST['keyword']);
+    }
+}
+function SearchBydate()
+{
+    if (!isset($_POST['StartDate']) || $_POST['StartDate'] == '' || !isset($_POST['EndDate']) || $_POST['EndDate'] == '') {
+        return getactivity();
+    } else {
+        return getactivityByDate($_POST['StartDate'], $_POST['EndDate']);
     }
 }
 
@@ -140,7 +150,7 @@ function getactivityByKeyword(string $keyword): array
         ];
     }
 }
-function getActivityByDate(string $startDate, string $endDate): array
+function getactivityByDate(string $startDate, string $endDate): array
 {
     $conn = getConnection();
     $sql = "SELECT a.*, u.name as CreateByName 
