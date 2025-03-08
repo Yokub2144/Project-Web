@@ -115,10 +115,12 @@ function SearchBykeyword()
 }
 function SearchBydate()
 {
-    if (!isset($_POST['StartDate']) || $_POST['StartDate'] == '' || !isset($_POST['EndDate']) || $_POST['EndDate'] == '') {
+    if (!isset($_POST['startDate']) || $_POST['startDate'] == '' || !isset($_POST['endDate']) || $_POST['endDate'] == '') {
         return getactivity();
+    } elseif ($_POST['startDate'] > $_POST['endDate']) {
+        return []; // คืนค่าเป็นอาร์เรย์ว่างถ้าช่วงวันที่ผิด
     } else {
-        return getactivityByDate($_POST['StartDate'], $_POST['EndDate']);
+        return getactivityByDate($_POST['startDate'], $_POST['endDate']);
     }
 }
 
@@ -156,24 +158,20 @@ function getactivityByDate(string $startDate, string $endDate): array
     $sql = "SELECT a.*, u.name as CreateByName 
             FROM activity a 
             JOIN user u ON a.CreateBy = u.UserID
-            WHERE a.StartDate >= ? AND a.EndDate <= ?";
+            WHERE (a.startDate BETWEEN ? AND ?) OR (a.endDate BETWEEN ? AND ?) 
+            OR (? BETWEEN a.startDate AND a.endDate) 
+            OR (? BETWEEN a.startDate AND a.endDate)";
+    
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ss', $startDate, $endDate);
+    $stmt->bind_param('ssssss', $startDate, $endDate, $startDate, $endDate, $startDate, $endDate);
     $stmt->execute();
     $result = $stmt->get_result();
     $activity = $result->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
     $conn->close();
 
-    if (isset($_SESSION['UserId'])) {
-        return [
-            'activity' => $activity,
-            'UserID' => $_SESSION['UserID']
-        ];
-    } else {
-        return [
-            'activity' => $activity,
-            'UserID' => null
-        ];
-    }
+    return [
+        'activity' => $activity,
+        'UserID' => $_SESSION['UserID'] ?? null
+    ];
 }
