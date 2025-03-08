@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,13 +8,15 @@
     <title>Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <link rel="stylesheet" href="/CSS/style_profile.css">
+    <link rel="stylesheet" href="CSS\style_profile.css">
 </head>
 
 <body>
     <div class="container">
-        <div class="profile-header">
-            <img src="img/profile.png" alt="Profile Picture" class="profile-image">
+        <div class="profile-header">     
+
+            <img src="<?php echo $User['ImageProfileURL']; ?>" alt="" width="200" height="200" style="border-radius: 50%; object-fit: cover; margin: 20px;">
+
             <div class="profile-info">
                 <div class="profile-username"><strong><?= $data['User']['Name'] ?></strong></div>
                 <div class="profile-bio">
@@ -117,7 +120,7 @@
                                             </form>
                                             <form action="/editActivity" method="get" class="d-flex justify-content-end">
                                                 <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
-                                                <button type="submit" class="btn btn-warning btn-sm mx-1" onclick="return confirmSubmission_edit()">
+                                                <button type="submit" class="btn btn-primary btn-sm mx-1" onclick="return confirmSubmission_edit()">
                                                     Edit
                                                 </button>
                                             </form>

@@ -15,19 +15,19 @@
     <body>
         <div class="container_singup" id="container_singup">
             <div class="form-container_singup sign-in">
-                <form action="/singup" method="post">
-                    <input type="text" name="name" placeholder="Name"required>
-                    <input type="email" id="email" name="email" placeholder="Email"required>
-                    <input type="password" id="password" name="password" placeholder="Password"required>
-                    <input type="text" name="phone" placeholder="Phone"required>
+                <form action="\singup" method="post" enctype="multipart/form-data">
+                    <input type="text" name="name" placeholder="Name">
+                    <input type="email" id="email" name="email" placeholder="Email">
+                    <input type="password" id="password" name="password" placeholder="Password">
+                    <input type="text" name="phone" placeholder="Phone">
                     <select name="gender" required>
                         <option value="">Gender</option>
                         <option value="Male">ชาย</option>
                         <option value="Female">หญิง</option>
                         <option value="Other">อื่นๆ</option>
                     </select>
-                    <input type="number" name="age" placeholder="Age"required>
-                    <input type="file" name="imageProfileURL" placeholder="ImageProfileURL">
+                    <input type="number" name="age" placeholder="Age">
+                    <input type="file" name="image" required>
                     <input style="background-color: #55065c; color:white" type="submit" value="Signup">
                 </form>
                 <?php
@@ -49,44 +49,3 @@
 
     </html>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <section>
-        <div class="form-container ">
-            <form action="/singup" method="post">
-                <h1>Sign In</h1>
-                <input type="text" name="name" placeholder="Name">
-                <input type="email" name="email" placeholder="Email">
-                <input type="password" name="password" placeholder="Password">
-                <input type="text" name="phone" placeholder="Phone">
-                <input type="text" name="gender" placeholder="Gender">
-                <input type="number" name="age" placeholder="Age">
-                <input type="text" name="imageProfileURL"  placeholder="ImageProfileURL">
-                <a href="/updatepassword">Forget Your Password?</a>
-                <input type="submit" value="Signup">s\
-            </form>
-        </div>
-    <script src="script.js"></script>
-
-</section> -->
