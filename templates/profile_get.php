@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +12,7 @@
 
 <body>
     <div class="container">
-        <div class="profile-header">     
+        <div class="profile-header">
 
             <img src="<?php echo $User['ImageProfileURL']; ?>" alt="" width="200" height="200" style="border-radius: 50%; object-fit: cover; margin: 20px;">
 
@@ -75,14 +74,28 @@
                                         <p class="card-text"><strong>ผู้สร้างกิจกรรม :</strong> <?= $registration['CreatorName'] ?>
                                         </p>
                                         <p class="card-text"><strong>สถานะ:</strong> <?= $registration['RegistrationStatus'] ?></p>
-                                        <form action="/profile" method="post" class="text-center">
-                                            <input type="hidden" name="UserID" value="<?= $data['User']['UserID'] ?>">
-                                            <input type="hidden" name="ActID" value="<?= $registration['ActID'] ?>">
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirmSubmission()">
-                                                ยกเลิกการเข้าร่วม
-                                            </button>
-                                        </form>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <?php if ($registration['CheckedIn'] == 0): ?>
+                                                <form action="/profile" method="post">
+                                                    <input type="hidden" name="UserID" value="<?= $data['User']['UserID'] ?>">
+                                                    <input type="hidden" name="ActID" value="<?= $registration['ActID'] ?>">
+                                                    <input type="hidden" name="check" value="1">
+                                                    <button type="submit" class="btn btn-primary btn-sm" name="check"
+                                                        onclick="return confirm('คุณต้องการเช็คอินกิจกรรมนี้ใช่หรือไม่?')">
+                                                        checkin
+                                                    </button>
+                                                </form>
+                                            <?php endif; ?>
+
+                                            <form action="/profile" method="post">
+                                                <input type="hidden" name="UserID" value="<?= $data['User']['UserID'] ?>">
+                                                <input type="hidden" name="ActID" value="<?= $registration['ActID'] ?>">
+                                                <button type="submit" class="btn btn-danger btn-sm" name="cancel"
+                                                    onclick="return confirmSubmission()">
+                                                    ยกเลิกการเข้าร่วม
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

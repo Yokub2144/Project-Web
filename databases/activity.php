@@ -26,7 +26,9 @@ function getactivity(): array
 function getactivityByActID($ActID)
 {
     $conn = getConnection();
-    $sql = "SELECT * FROM activity WHERE ActID = ?";
+    $sql = "SELECT a.*, u.name FROM activity a 
+    JOIN user u ON a.CreateBy = u.UserID 
+    WHERE ActID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $ActID);
     $stmt->execute();
@@ -158,12 +160,10 @@ function getactivityByDate(string $startDate, string $endDate): array
     $sql = "SELECT a.*, u.name as CreateByName 
             FROM activity a 
             JOIN user u ON a.CreateBy = u.UserID
-            WHERE (a.startDate BETWEEN ? AND ?) OR (a.endDate BETWEEN ? AND ?) 
-            OR (? BETWEEN a.startDate AND a.endDate) 
-            OR (? BETWEEN a.startDate AND a.endDate)";
+            WHERE (a.startDate BETWEEN ? AND ?)";
     
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ssssss', $startDate, $endDate, $startDate, $endDate, $startDate, $endDate);
+    $stmt->bind_param('ss', $startDate, $endDate);
     $stmt->execute();
     $result = $stmt->get_result();
     $activity = $result->fetch_all(MYSQLI_ASSOC);
@@ -174,4 +174,33 @@ function getactivityByDate(string $startDate, string $endDate): array
         'activity' => $activity,
         'UserID' => $_SESSION['UserID'] ?? null
     ];
+}
+
+function searchActivity(string $search, $startDate = null, $endDate = null): array
+{
+    $conn = getConnection();
+    $sql = "SELECT a.*, u.name as CreateByName 
+    FROM activity a 
+    JOIN user u ON a.CreateBy = u.UserID
+    WHERE a.Title LIKE ?";
+    $params = [];
+    $types = "s";
+    
+    // เพิ่ม wildcard (%) เพื่อให้ค้นหาได้ถูกต้อง
+    $search = "%" . $search . "%";
+    $params[] = $search;
+
+    if (!empty($startDate) && !empty($endDate)) {
+        $sql .= " AND date BETWEEN ? AND ?";
+        $params[] = $startDate;
+        $params[] = $endDate;
+        $types .= "ss";
+    }
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param($types, ...$params);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    return $result->fetch_all(MYSQLI_ASSOC);
 }

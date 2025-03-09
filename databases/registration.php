@@ -112,3 +112,37 @@ function joinActivity($ActID) {
     $conn->close();
     return $users;
 }
+function updateRegistrationStatus($UserID, $ActID, $Status): bool
+{
+    $conn = getConnection();
+    $sql = 'UPDATE registration SET Status = ? WHERE UserID = ? AND ActID = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('sii', $Status, $UserID, $ActID);
+    if ($stmt->execute()) {
+        $stmt->close();
+        $conn->close();
+        return true;
+    } else {
+        error_log("Error updating registration status: " . $stmt->error);
+        $stmt->close();
+        $conn->close();
+        return false;
+    }
+}
+function updateCheckInStatus($UserID, $ActID, $CheckedIn): bool
+{
+    $conn = getConnection();
+    $sql = 'UPDATE registration SET CheckedIn = ? WHERE UserID = ? AND ActID = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('iii', $CheckedIn, $UserID, $ActID);
+    if ($stmt->execute()) {
+        $stmt->close();
+        $conn->close();
+        return true;
+    } else {
+        error_log("Error updating check-in status: " . $stmt->error);
+        $stmt->close();
+        $conn->close();
+        return false;
+    }
+}

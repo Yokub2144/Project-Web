@@ -41,20 +41,18 @@
             <?php if (empty($activity)) : ?>
                 <p class="no-activity">ไม่พบข้อมูลกิจกรรม</p>
             <?php else : ?>
+                    
                 <?php foreach ($activity as $activityItem) : ?>
                     <div class="activity-card">
-                        <a href="#">
-                            <img src="img/poster.png" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; transition: opacity 0.3s ease;" alt="<?= $activityItem['Title'] ?>" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
-                        </a>
+                        <img src="img/poster.png" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; transition: opacity 0.3s ease;" alt="<?= $activityItem['Title'] ?>" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
                         <h2 class="activity-card-title"><?= $activityItem['Title'] ?></h2>
                         <p class="activity-card-details"><strong>รายละเอียด:</strong> <?= $activityItem['Description'] ?></p>
                         <p class="activity-card-details"><strong>วันที่เริ่ม:</strong> <?= $activityItem['StartDate'] ?></p>
                         <p class="activity-card-details"><strong>วันที่สิ้นสุด:</strong> <?= $activityItem['EndDate'] ?></p>
-                        <form action="/homeactivity" method="post">
+                        <form action="/detalis" method="post">
                             <input type="hidden" name="UserID" value="<?= $UserID ?>">
                             <input type="hidden" name="ActID" value="<?= $activityItem['ActID'] ?>">
-                            <input type="hidden" name="Actstatus" value="<?= $activityItem['Status'] ?>">
-                            <input type="hidden" name="regstatus" value="<?= 'Pending' ?>">
+                            <input type="submit" class="register-btn" name="detalis" value="รายละเอียดกิจกรรม">
                         </form>
                     </div>
                 <?php endforeach; ?>
