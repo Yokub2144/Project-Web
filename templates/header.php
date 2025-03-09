@@ -7,7 +7,7 @@
     <title>Active Zone</title>
     <link rel="icon" href="img/logo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="/CSS/Style_header.css"> -->
+     <link rel="stylesheet" href="/CSS/Style_header.css">
     
 </head>
 
