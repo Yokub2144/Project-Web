@@ -52,7 +52,7 @@
                         <form action="/detalis" method="post">
                             <input type="hidden" name="UserID" value="<?= $UserID ?>">
                             <input type="hidden" name="ActID" value="<?= $activityItem['ActID'] ?>">
-                            <input type="submit" class="register-btn" name="detalis" value="รายละเอียดกิจกรรม">
+                            <input type="submit" class="Explore-button" name="detalis" value="รายละเอียดกิจกรรม">
                         </form>
                     </div>
                 <?php endforeach; ?>
