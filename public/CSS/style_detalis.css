@@ -1,0 +1,118 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('/img/2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.card {
+    background-color: rgba(10, 8, 21, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    display: flex; /* เพิ่ม display: flex; */
+    flex-direction: row; /* เพิ่ม flex-direction: row; */
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.image-section {
+    width: 300px;
+    padding: 30px;
+    flex-shrink: 0;
+}
+
+.image-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.image-section img:hover {
+    transform: scale(1.05);
+}
+
+.info-section {
+    padding: 30px;
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 50px;
+}
+
+.activity-card-title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.activity-card-details {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.activity-card-details-time {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #ff6347;
+    font-weight: 500;
+}
+
+.register-btn {
+    background: linear-gradient(135deg, #008080, #006666);
+    color: white;
+    padding: 16px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.register-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ปรับ responsive สำหรับหน้าจอขนาดเล็ก */
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .image-section {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .info-section {
+        width: 100%;
+        padding: 20px;
+        text-align: left;
+        padding-left: 20px;
+    }
+}
