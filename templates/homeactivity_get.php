@@ -1,6 +1,4 @@
-<?php
-// filepath: /C:/xampp/htdocs/Project-Web/templates/homeactivity_get.php
-?>
+
 <!DOCTYPE html>
 <html lang="th">
 
@@ -12,17 +10,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/CSS/style_home.css">
-    
+
 </head>
 
 <body>
     <div class="container">
         <?php
         $activity = $data['activity'];
-        if(!isset($_SESSION['UserID'])){
-           $UserID = '';  
+        if (!isset($_SESSION['UserID'])) {
+            $UserID = '';
         } else {
-            $UserID = $data['UserID']; 
+            $UserID = $data['UserID'];
         }
         ?>
         <div style="text-align: center;">
@@ -41,18 +39,32 @@
             <?php if (empty($activity)) : ?>
                 <p class="no-activity">ไม่พบข้อมูลกิจกรรม</p>
             <?php else : ?>
-                    
                 <?php foreach ($activity as $activityItem) : ?>
                     <div class="activity-card">
-                        <img src="img/poster.png" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; transition: opacity 0.3s ease;" alt="<?= $activityItem['Title'] ?>" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
+                        <!-- แสดงรูปภาพกิจกรรม -->
+                        <a href="#">
+                            <?php if (!empty($activityItem['ImageURL'])): ?>
+                                <img src="<?= $activityItem['ImageURL'] ?>" alt="<?= $activityItem['Title'] ?>"
+                                    style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; transition: opacity 0.3s ease;"
+                                    onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
+                            <?php else: ?>
+                                 <!-- หากไม่มีรูปภาพ ให้แสดงพื้นหลังสีขาว -->
+                                 <div class="image-placeholder"
+                                    style="width: 100%; height: 200px; background-color: white; border-radius: 8px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; color: #aaa;">
+                                    ไม่มีรูปภาพ
+                                </div>
+                            <?php endif; ?>
+                        </a>
+
                         <h2 class="activity-card-title"><?= $activityItem['Title'] ?></h2>
                         <p class="activity-card-details"><strong>รายละเอียด:</strong> <?= $activityItem['Description'] ?></p>
                         <p class="activity-card-details"><strong>วันที่เริ่ม:</strong> <?= $activityItem['StartDate'] ?></p>
                         <p class="activity-card-details"><strong>วันที่สิ้นสุด:</strong> <?= $activityItem['EndDate'] ?></p>
-                        <form action="/detalis" method="post">
+                        <form action="/homeactivity" method="post">
                             <input type="hidden" name="UserID" value="<?= $UserID ?>">
                             <input type="hidden" name="ActID" value="<?= $activityItem['ActID'] ?>">
-                            <input type="submit" class="Explore-button" name="detalis" value="รายละเอียดกิจกรรม">
+                            <input type="hidden" name="Actstatus" value="<?= $activityItem['Status'] ?>">
+                            <input type="hidden" name="regstatus" value="<?= 'Pending' ?>">
                         </form>
                     </div>
                 <?php endforeach; ?>

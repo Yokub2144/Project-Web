@@ -15,7 +15,7 @@
         <div class="profile-header">
 
             <img src="<?php echo $User['ImageProfileURL']; ?>" alt="" width="200" height="200" style="border-radius: 50%; object-fit: cover; margin: 20px;">
-
+          
             <div class="profile-info">
                 <div class="profile-username"><strong><?= $data['User']['Name'] ?></strong></div>
                 <div class="profile-bio">
@@ -53,49 +53,36 @@
             </div>
         </div>
 
+
+        <!-- ส่วน Now: กิจกรรมที่เข้าร่วม -->
         <h2 class="text-left mt-5 mb-4" style="color: #f2f2f2;">Now</h2>
         <div class="table">
             <div class="row">
                 <?php foreach ($data['registration'] as $registration): ?>
-                    <div class="col-md-10 mb-4">
-                        <div class="card" style="background-color: rgba(52, 58, 64, 0.0); color: #f2f2f2;">
-                            <div class="row ">
-                                <div class="col-md-4">
-                                    <img src="img/poster.png" alt="" style="width: 100%; height: auto; max-height: 250px; object-fit: cover; border-radius: 8px;
-                                        margin-bottom: 10px; transition: opacity 0.3s ease;">
+                    <div class="col-md-11 mb-4">
+                        <div class="card" style="background-color: rgba(60, 73, 85, 0); color: #f2f2f2;">
+                            <div class="row">
+                                <div class="col-md-4 mr-auto">
+                                    <!-- แสดงรูปภาพกิจกรรม -->
+                                    <?php if (!empty($registration['ImageURL'])): ?>
+                                        <img src="<?= $registration['ImageURL'] ?>" alt="Activity Image"
+                                            style="width: 100%; height: auto; max-height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                                    <?php endif; ?>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $registration['Title'] ?></h5>
-                                        <p class="card-text"><strong>วันเริ่มกิจกรรม :</strong> <?= $registration['StartDate'] ?>
-                                        </p>
-                                        <p class="card-text"><strong>วันสิ้นสุดกิจกรรม :</strong> <?= $registration['EndDate'] ?>
-                                        </p>
-                                        <p class="card-text"><strong>ผู้สร้างกิจกรรม :</strong> <?= $registration['CreatorName'] ?>
-                                        </p>
+                                        <p class="card-text"><strong>วันเริ่มกิจกรรม :</strong> <?= $registration['StartDate'] ?></p>
+                                        <p class="card-text"><strong>วันสิ้นสุดกิจกรรม :</strong> <?= $registration['EndDate'] ?></p>
+                                        <p class="card-text"><strong>ผู้สร้างกิจกรรม :</strong> <?= $registration['CreatorName'] ?></p>
                                         <p class="card-text"><strong>สถานะ:</strong> <?= $registration['RegistrationStatus'] ?></p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <?php if ($registration['CheckedIn'] == 0): ?>
-                                                <form action="/profile" method="post">
-                                                    <input type="hidden" name="UserID" value="<?= $data['User']['UserID'] ?>">
-                                                    <input type="hidden" name="ActID" value="<?= $registration['ActID'] ?>">
-                                                    <input type="hidden" name="check" value="1">
-                                                    <button type="submit" class="btn btn-primary btn-sm" name="check"
-                                                        onclick="return confirm('คุณต้องการเช็คอินกิจกรรมนี้ใช่หรือไม่?')">
-                                                        checkin
-                                                    </button>
-                                                </form>
-                                            <?php endif; ?>
-
-                                            <form action="/profile" method="post">
-                                                <input type="hidden" name="UserID" value="<?= $data['User']['UserID'] ?>">
-                                                <input type="hidden" name="ActID" value="<?= $registration['ActID'] ?>">
-                                                <button type="submit" class="btn btn-danger btn-sm" name="cancel"
-                                                    onclick="return confirmSubmission()">
-                                                    ยกเลิกการเข้าร่วม
-                                                </button>
-                                            </form>
-                                        </div>
+                                        <form action="/profile" method="post" class="text-center">
+                                            <input type="hidden" name="UserID" value="<?= $data['User']['UserID'] ?>">
+                                            <input type="hidden" name="ActID" value="<?= $registration['ActID'] ?>">
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmSubmission()">
+                                                ยกเลิกการเข้าร่วม
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -104,22 +91,24 @@
                 <?php endforeach; ?>
             </div>
         </div>
+
+        <!-- ส่วน Creator: กิจกรรมที่สร้าง -->
         <h2 class="text-left mt-5 mb-4" style="color: #f2f2f2;">Creator</h2>
         <div class="table">
             <div class="row">
-
-                <?php $data['createdActivities'];
-                foreach ($data['createdActivities'] as $activity): ?>
+                <?php foreach ($data['createdActivities'] as $activity): ?>
                     <div class="col-md-11 mb-4">
                         <div class="card" style="background-color: rgba(60, 73, 85, 0); color: #f2f2f2;">
-                            <div class="row ">
+                            <div class="row">
                                 <div class="col-md-4 mr-auto">
-                                    <img src="img/MSU-book-fair-2.png" alt=""
-                                        style="width: 100%; height: auto; max-height: 250px; object-fit: cover; border-radius: 8px;
-                                        margin-bottom: 10px; transition: opacity 0.3s ease;">
+                                    <!-- แสดงรูปภาพกิจกรรม -->
+                                    <?php if (!empty($activity['ImageURL'])): ?>
+                                        <img src="<?= $activity['ImageURL'] ?>" alt="Activity Image"
+                                            style="width: 100%; height: auto; max-height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                                    <?php endif; ?>
                                 </div>
                                 <div class="col-md-8">
-                                    <div class="card-body ">
+                                    <div class="card-body">
                                         <h5 class="card-title"><?= $activity['Title'] ?></h5>
                                         <p class="card-text"><strong>วันเริ่มกิจกรรม :</strong> <?= $activity['StartDate'] ?></p>
                                         <p class="card-text"><strong>วันสิ้นสุดกิจกรรม :</strong> <?= $activity['EndDate'] ?></p>
@@ -146,13 +135,14 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
         </div>
+
+
         <script>
             function confirmSubmission_delete() {
                 return confirm("คุณต้องการลบกิจกรรมนี้ใช่หรือไม่?");
