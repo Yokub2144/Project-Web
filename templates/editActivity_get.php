@@ -19,6 +19,7 @@ if (isset($_GET['ActID'])) {
     echo "ไม่ได้รับ ActID";
     $Title = $Description = $Location = $Max = $StartDate = $EndDate = $Status = "";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

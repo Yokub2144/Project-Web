@@ -28,3 +28,4 @@ if(isset($_POST['check']))
     header('Location: /profile');
     exit;
 }
+

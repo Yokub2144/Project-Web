@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style_search.css">
 </head>
-
 <body>
     <div class="container">
         <!-- ส่วนหัวหน้าเว็บ -->
