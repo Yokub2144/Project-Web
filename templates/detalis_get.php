@@ -8,7 +8,6 @@
 
 </head>
 <body>
-    
 <?php
         $activity = $data['activity'];
         if(!isset($_SESSION['UserID'])){

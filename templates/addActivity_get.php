@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/css/style_addactivity.css">
 </head>
 
-
 <body>
     <div class="container">
         <div class="card shadow-sm border-2">
@@ -27,11 +26,7 @@
                 </div>
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
-<<<<<<< HEAD
-                        <form action="/addactivity" method="post">
-=======
                      
->>>>>>> 982f2a3846cd9a5741683292fe70a0759a5719f1
                             <div class="form-group mb-3">
                                 <label for="Title" class="form-label">Name</label>
                                 <input type="text" class="form-control" name="Title" placeholder="Name" required>

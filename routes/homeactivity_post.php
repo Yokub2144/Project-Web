@@ -24,4 +24,3 @@ if (!isset($_SESSION['UserID'])) {
     header('Location: /profile');
     exit;
 }
-

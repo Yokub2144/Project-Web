@@ -19,7 +19,6 @@ if (isset($_GET['ActID'])) {
     echo "ไม่ได้รับ ActID";
     $Title = $Description = $Location = $Max = $StartDate = $EndDate = $Status = "";
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,13 +47,6 @@ if (isset($_GET['ActID'])) {
                 </div>
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
-<<<<<<< HEAD
-                        <form action="/editactivity" method="post">
-                            <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
-                            <div class="form-group mb-3">
-                                <label for="Title" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars($Title) ?>" placeholder="Name">
-=======
 
                         <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
                         <div class="form-group mb-3">
@@ -73,7 +65,6 @@ if (isset($_GET['ActID'])) {
                             <div class="col-md-6">
                                 <label for="Max" class="form-label">Maximum</label>
                                 <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum">
->>>>>>> 982f2a3846cd9a5741683292fe70a0759a5719f1
                             </div>
                         </div>
                         <div class="form-group mb-3 row">

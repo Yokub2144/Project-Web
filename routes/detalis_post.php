@@ -6,7 +6,6 @@ if (isset($_POST['detalis'])) {
         $activityData = getactivityByActID($ActID);
 
 
-        
         if (isset($_SESSION['UserID'])) {
             $UserID = $_SESSION['UserID'];
             renderView('detalis_get', ['activity' => $activityData, 'UserID' => $UserID]);

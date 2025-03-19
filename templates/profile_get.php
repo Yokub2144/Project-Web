@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="css\style_profile.css">
 </head>
 
-
-
 <body>
     <div class="container">
         <div class="profile-header">

@@ -31,6 +31,7 @@
                     return $user['Status'] !== 'Approved' && $user['Status'] !== 'Rejected';
                 });
                 ?>
+
                 <?php if (!empty($pendingUsers)): ?>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered">
