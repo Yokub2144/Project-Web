@@ -47,32 +47,11 @@ if (isset($_GET['ActID'])) {
                 </div>
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
-<<<<<<< HEAD
                         <form action="/editactivity" method="post">
                             <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
                             <div class="form-group mb-3">
                                 <label for="Title" class="form-label">Name</label>
                                 <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars($Title) ?>" placeholder="Name">
-=======
-
-                        <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
-                        <div class="form-group mb-3">
-                            <label for="Title" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars($Title) ?>" placeholder="Name">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="Description" class="form-label">Details</label>
-                            <textarea class="form-control" name="Description" placeholder="Details"><?= htmlspecialchars($Description) ?></textarea>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="Location" class="form-label">Location</label>
-                            <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location">
-                        </div>
-                        <div class="form-group mb-3 ">
-                            <div class="col-md-6">
-                                <label for="Max" class="form-label">Maximum</label>
-                                <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum">
->>>>>>> 982f2a3846cd9a5741683292fe70a0759a5719f1
                             </div>
                         </div>
                         <div class="form-group mb-3 row">
