@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/style_addactivity.css">
 </head>
 
+
 <body>
     <div class="container">
         <div class="card shadow-sm border-2">

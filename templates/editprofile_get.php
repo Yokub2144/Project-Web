@@ -16,6 +16,7 @@
             background-color: #f8f9fa;
         }
 
+        
         .profile-container {
             max-width: 800px;
             margin: 50px auto;
