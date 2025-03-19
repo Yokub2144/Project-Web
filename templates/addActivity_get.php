@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
-                        <form action="/addActivity" method="post">
+                        <form action="/addactivity" method="post">
                             <div class="form-group mb-3">
                                 <label for="Title" class="form-label">Name</label>
                                 <input type="text" class="form-control" name="Title" placeholder="Name">

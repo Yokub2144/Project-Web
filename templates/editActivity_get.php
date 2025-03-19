@@ -48,7 +48,7 @@ if (isset($_GET['ActID'])) {
                 </div>
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
-                        <form action="/editActivity" method="post">
+                        <form action="/editactivity" method="post">
                             <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
                             <div class="form-group mb-3">
                                 <label for="Title" class="form-label">Name</label>

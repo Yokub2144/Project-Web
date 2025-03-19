@@ -1,2 +1,2 @@
 <?php
-renderView('editActivity_get');
+renderView('editactivity_get');
