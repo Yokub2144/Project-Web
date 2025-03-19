@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Event</title>
-    <link rel="stylesheet" href="/CSS/style_addActivity.css">
+    <link rel="stylesheet" href="/CSS/style_addactivity.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
                     <div class="card-body text-center">
                         <h2 class="card-title mb-4" style="font-size: 20px;">CREATE EVENT</h2>
                         <img src="img/5.png" class="img-fluid rounded-start mb-3" alt="Event Image">
-                        <form action="/addActivity" method="post" enctype="multipart/form-data">
+                        <form action="/addactivity" method="post" enctype="multipart/form-data">
                             <input type="file" name="ImageURL" accept="image/*" required>
                      
                         <div class="button-group">

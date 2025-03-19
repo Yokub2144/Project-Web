@@ -23,17 +23,17 @@ if (isset($_SESSION['UserID']) === false) {
                     $ImageURL = $filepath; 
                 } else {
                     $_SESSION['alert'] = 'เกิดข้อผิดพลาดในการอัปโหลดไฟล์';
-                    header('Location: /addActivity');
+                    header('Location: /addactivity');
                     exit();
                 }
             } else {
                 $_SESSION['alert'] = 'ประเภทไฟล์ไม่ถูกต้อง';
-                header('Location: /addActivity');
+                header('Location: /addactivity');
                 exit();
             }
         } else {
             $_SESSION['alert'] = 'กรุณาเลือกไฟล์รูปภาพ';
-            header('Location: /addActivity');
+            header('Location: /addactivity');
             exit();
         }
 
@@ -46,7 +46,7 @@ if (isset($_SESSION['UserID']) === false) {
             $_POST['StartDate'],
             $_POST['EndDate'],
             $_POST['Max'],
-            $_SESSION['UserID'], // Assuming you store UserID in session
+            $_SESSION['UserID'], 
             $_POST['Status']
         );
 
