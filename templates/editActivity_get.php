@@ -27,7 +27,7 @@ if (isset($_GET['ActID'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
-    <link rel="stylesheet" href="/CSS/style_editactivity.css">
+    <link rel="stylesheet" href="/css/style_editactivity.css">
 </head>
 
 <body>
