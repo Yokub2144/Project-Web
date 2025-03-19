@@ -26,7 +26,11 @@
                 </div>
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
+<<<<<<< HEAD
                      
+=======
+                        <form action="/addactivity" method="post">
+>>>>>>> 25cd666434e8fba6eeb4b605533afecb229411fa
                             <div class="form-group mb-3">
                                 <label for="Title" class="form-label">Name</label>
                                 <input type="text" class="form-control" name="Title" placeholder="Name" required>
