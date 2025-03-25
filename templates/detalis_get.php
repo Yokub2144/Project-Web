@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Festival Card</title>
     <link rel="stylesheet" href="/css/style_detalis.css">
-
 </head>
 
 <body>
@@ -20,8 +19,16 @@
     ?>
     <div class="card">
         <div class="image-section">
-            <img src="img/poster.png" alt="Music Festival Poster">
+            <?php if (!empty($activity['ImageURL'])): ?>
+                <img src="<?= $activity['ImageURL'] ?>" alt="<?= $activity['Title'] ?>" class="activity-image">
+            <?php else: ?>
+                <div class="image-placeholder"
+                    style="width: 100%; height: 200px; background-color: white; border-radius: 8px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; color: #aaa;">
+                    ไม่มีรูปภาพ
+                </div>
+            <?php endif; ?>
         </div>
+
         <div class="info-section">
             <p class="activity-card-details-time"><strong>วันที่เริ่ม:</strong> <?= $activity['StartDate'] ?>-<?= $activity['EndDate'] ?></p>
             <h2 class="activity-card-title"><?= $activity['Title'] ?></h2>
