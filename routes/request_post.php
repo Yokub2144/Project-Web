@@ -8,4 +8,5 @@ if ($result) {
 } else {
     $_SESSION['alert'] = 'อัพเดทสถานะการลงทะเบียนไม่สำเร็จ';
 }
-renderView('request_get', ['ActID' => $ActID]);
+header('Location: /profile');
+exit();

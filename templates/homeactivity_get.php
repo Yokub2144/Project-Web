@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th">
 
@@ -36,47 +35,46 @@
         </div>
 
         <div class="activity-grid">
-            <?php if (empty($activity)) : ?>
-                <p class="no-activity">ไม่พบข้อมูลกิจกรรม</p>
-            <?php else : ?>
-                <?php foreach ($activity as $activityItem) : ?>
-                    <div class="activity-card">
-                        <!-- แสดงรูปภาพกิจกรรม -->
-                        <a href="#">
-                            <?php if (!empty($activityItem['ImageURL'])): ?>
-                                <img src="<?= $activityItem['ImageURL'] ?>" alt="<?= $activityItem['Title'] ?>"
-                                    style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; transition: opacity 0.3s ease;"
-                                    onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
-                            <?php else: ?>
-                                 <!-- หากไม่มีรูปภาพ ให้แสดงพื้นหลังสีขาว -->
-                                 <div class="image-placeholder"
-                                    style="width: 100%; height: 200px; background-color: white; border-radius: 8px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; color: #aaa;">
-                                    ไม่มีรูปภาพ
-                                </div>
-                            <?php endif; ?>
-                        </a>
-
-                        <h2 class="activity-card-title"><?= $activityItem['Title'] ?></h2>
-                        <p class="activity-card-details"><strong>รายละเอียด:</strong> <?= $activityItem['Description'] ?></p>
-                        <p class="activity-card-details"><strong>วันที่เริ่ม:</strong> <?= $activityItem['StartDate'] ?></p>
-                        <p class="activity-card-details"><strong>วันที่สิ้นสุด:</strong> <?= $activityItem['EndDate'] ?></p>
-                        <form action="/homeactivity" method="post">
-                            <input type="hidden" name="UserID" value="<?= $UserID ?>">
-                            <input type="hidden" name="ActID" value="<?= $activityItem['ActID'] ?>">
-                            <input type="hidden" name="Actstatus" value="<?= $activityItem['Status'] ?>">
-                            <input type="hidden" name="regstatus" value="<?= 'Pending' ?>">
-                        </form>
+    <?php if (empty($activity)) : ?>
+        <p class="no-activity">ไม่พบข้อมูลกิจกรรม</p>
+    <?php else : ?>
+        <?php foreach ($activity as $activityItem) : ?>
+            <div class="activity-card" onclick="submitForm('form-<?= $activityItem['ActID'] ?>')">
+                <!-- แสดงรูปภาพกิจกรรม -->
+                <?php if (!empty($activityItem['ImageURL'])): ?>
+                    <img src="<?= $activityItem['ImageURL'] ?>" alt="<?= $activityItem['Title'] ?>"
+                        style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; transition: opacity 0.3s ease;"
+                        onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
+                <?php else: ?>
+                    <!-- หากไม่มีรูปภาพ ให้แสดงพื้นหลังสีขาว -->
+                    <div class="image-placeholder"
+                        style="width: 100%; height: 200px; background-color: white; border-radius: 8px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; color: #aaa;">
+                        ไม่มีรูปภาพ
                     </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
-    </div>
+                <?php endif; ?>
+                <h2 class="activity-card-title"><?= $activityItem['Title'] ?></h2>
+                <p class="activity-card-details"><strong>รายละเอียด:</strong> <?= $activityItem['Description'] ?></p>
+                <p class="activity-card-details"><strong>วันที่เริ่ม:</strong> <?= $activityItem['StartDate'] ?></p>
+                <p class="activity-card-details"><strong>วันที่สิ้นสุด:</strong> <?= $activityItem['EndDate'] ?></p>
+
+                <!-- ฟอร์มที่ซ่อน -->
+                <form id="form-<?= $activityItem['ActID'] ?>" action="/detalis" method="post" name="detalis" style="display: none;">
+                    <input type="hidden" name="UserID" value="<?= $UserID ?>">
+                    <input type="hidden" name="ActID" value="<?= $activityItem['ActID'] ?>">
+                </form>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+
 
     <script>
         function confirmSubmission() {
             return confirm("คุณต้องการลงทะเบียนวิชานี้ใช่หรือไม่?");
         }
-
+        function submitForm(formId) {
+        document.getElementById(formId).submit();
+    }
         function scrollActivities(direction) {
             const activityList = document.querySelector('.activity-list');
             const cardWidth = 320; // Width of card + margin

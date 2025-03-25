@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['detalis'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['ActID'])) {
         $ActID = $_POST['ActID'];
@@ -18,21 +18,3 @@ if (isset($_POST['detalis'])) {
     }
 }
 
-if(isset($_POST['reg']))
-{
-    $UserID = $_SESSION['UserID'];
-    $ActID = $_POST['ActID'];
-    $actstatus = $_POST['Status'];
-   
-    if ($actstatus === 'Active') {
-        if (enrollActivity($UserID, $ActID, $actstatus)) {
-            $_SESSION['alert'] = 'ลงทะเบียนสำเร็จ';
-        } else {
-            $_SESSION['alert'] = 'มีอยู่ในรายการลงทะเบียนแล้ว';
-        }
-    } else {
-        $_SESSION['alert'] = 'กิจกรรมนี้ยังไม่เปิดรับการลงทะเบียน';
-    }
-    header('Location: /homeactivity');
-    exit;
-}

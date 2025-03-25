@@ -16,11 +16,11 @@
 
             <img src="<?php echo $User['ImageProfileURL']; ?>" alt="" width="200" height="200" style="border-radius: 50%; object-fit: cover; margin: 20px;">
             <form action="/editprofile" method="get" class="d-flex justify-content-end">
-                                                <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
-                                                <button type="submit" class="btn btn-primary btn-sm mx-1">
-                                                    แก้ไขโปรไฟล์
-                                                </button>
-                                            </form>
+                <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
+                <button type="submit" class="btn btn-primary btn-sm mx-1">
+                    แก้ไขโปรไฟล์
+                </button>
+            </form>
             <div class="profile-info">
                 <div class="profile-username"><strong><?= $data['User']['Name'] ?></strong></div>
                 <div class="profile-bio">
@@ -81,10 +81,24 @@
                                         <p class="card-text"><strong>วันสิ้นสุดกิจกรรม :</strong> <?= $registration['EndDate'] ?></p>
                                         <p class="card-text"><strong>ผู้สร้างกิจกรรม :</strong> <?= $registration['CreatorName'] ?></p>
                                         <p class="card-text"><strong>สถานะ:</strong> <?= $registration['RegistrationStatus'] ?></p>
+                                        <?php if ($registration['RegistrationStatus'] === 'Approved'): ?>
+                                            <?php if (empty($registration['CheckedIn']) || !$registration['CheckedIn']): ?>
+                                                <form action="/checkin" method="post" class="text-center" onsubmit="return confirmCheckIn(this);">
+                                                    <input type="hidden" name="UserID" value="<?= $data['User']['UserID'] ?>">
+                                                    <input type="hidden" name="ActID" value="<?= $registration['ActID'] ?>">
+                                                    <input type="hidden" name="JoinCode" id="JoinCodeInput">
+                                                    <button type="submit" class="btn btn-success btn-sm" name="checkin">
+                                                        เช็คอิน
+                                                    </button>
+                                                </form>
+                                            <?php else: ?>
+                                                <p class="text-success"><strong>เช็คอินแล้ว</strong></p>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
                                         <form action="/profile" method="post" class="text-center">
                                             <input type="hidden" name="UserID" value="<?= $data['User']['UserID'] ?>">
                                             <input type="hidden" name="ActID" value="<?= $registration['ActID'] ?>">
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmSubmission()">
+                                            <button type="submit" class="btn btn-danger btn-sm" name="cancel" onclick="return confirmSubmission()">
                                                 ยกเลิกการเข้าร่วม
                                             </button>
                                         </form>
@@ -147,16 +161,26 @@
             </div>
         </div>
 
-
-        <script>
-            function confirmSubmission_delete() {
-                return confirm("คุณต้องการลบกิจกรรมนี้ใช่หรือไม่?");
+    </div>
+    <script>
+        function confirmCheckIn(form) {
+            const joinCode = prompt("กรุณากรอกรหัสยืนยันเพื่อเช็คอิน:");
+            if (joinCode === null || joinCode.trim() === "") {
+                alert("กรุณากรอกรหัสยืนยัน!");
+                return false; // ยกเลิกการส่งฟอร์ม
             }
+            form.JoinCode.value = joinCode; // ใส่รหัสยืนยันลงในฟอร์ม
+            return true; // ส่งฟอร์ม
+        }
 
-            function confirmSubmission() {
-                return confirm("คุณต้องการยกเลิกการเข้าร่วมกิจกรรมนี้ใช่หรือไม่?");
-            }
-        </script>
+        function confirmSubmission_delete() {
+            return confirm("คุณต้องการลบกิจกรรมนี้ใช่หรือไม่?");
+        }
+
+        function confirmSubmission() {
+            return confirm("คุณต้องการยกเลิกการเข้าร่วมกิจกรรมนี้ใช่หรือไม่?");
+        }
+    </script>
 </body>
 
 </html>

@@ -204,3 +204,41 @@ function searchActivity(string $search, $startDate = null, $endDate = null): arr
 
     return $result->fetch_all(MYSQLI_ASSOC);
 }
+function generateRandomCode($length = 6) {
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $charactersLength = strlen($characters);
+    $randomCode = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomCode .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomCode;
+}
+function saveActivityCode($ActID, $code) {
+    $filePath = __DIR__ . '/activity_codes.php';
+
+    // อ่านข้อมูลจากไฟล์ PHP
+    $data = include $filePath;
+
+    // เพิ่มหรืออัปเดตรหัสสำหรับกิจกรรม
+    $data[$ActID] = $code;
+
+    // เขียนข้อมูลกลับไปยังไฟล์ PHP
+    $content = "<?php\nreturn " . var_export($data, true) . ";\n";
+    file_put_contents($filePath, $content);
+}
+
+function getActivityCode($ActID) {
+    $filePath = __DIR__ . '/activity_codes.php';
+
+    // อ่านข้อมูลจากไฟล์ PHP
+    $data = include $filePath;
+
+    // คืนค่ารหัสของกิจกรรม ถ้ามี
+    return $data[$ActID] ?? null;
+}
+
+function generateAndSaveActivityCode($ActID, $length = 6) {
+    $code = generateRandomCode($length);
+    saveActivityCode($ActID, $code);
+    return $code;
+}

@@ -13,17 +13,27 @@
 <body>
     <div class="container mt-5">
         <div class="card shadow-lg p-4">
+
             <h1 class="text-center mb-4">Activity Participants</h1>
             <?php
-            if (isset($_GET['ActID'])||isset($_POST['ActID'])) {
+            if (isset($_GET['ActID']) || isset($_POST['ActID'])) {
                 $ActID = $_GET['ActID'];
                 $Activity = getactivityByActID($ActID);
+
+                // ดึงรหัสกิจกรรมจากไฟล์ หรือสร้างใหม่ถ้ายังไม่มี
+                $Activity['JoinCode'] = getActivityCode($ActID);
+                if (!$Activity['JoinCode']) {
+                    $Activity['JoinCode'] = generateAndSaveActivityCode($ActID);
+                }
             } else {
                 echo "<div class='alert alert-danger'>ไม่ได้รับ Activity ID</div>";
                 exit();
             }
             $users = joinActivity($Activity['ActID']);
             ?>
+            <div class="alert alert-info text-center">
+                <strong>รหัสเข้าร่วมกิจกรรม:</strong> <?php echo htmlspecialchars($Activity['JoinCode']); ?>
+            </div>
             <?php if ($ActID && !empty($users)): ?>
                 <?php
                 // ตรวจสอบว่ามีผู้ใช้ที่ Status ไม่ใช่ 'Approved' หรือ 'Rejected' หรือไม่

@@ -17,3 +17,4 @@ require_once DATABASE_DIR . '/user.php';
 require_once DATABASE_DIR . '/authen.php';
 require_once DATABASE_DIR . '/activity.php';
 require_once DATABASE_DIR . '/registration.php';
+require_once DATABASE_DIR . '/activity_codes.php';
