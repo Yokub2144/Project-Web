@@ -113,61 +113,57 @@ if (isset($_GET['ActID'])) {
 
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
-                            <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
-                            <div class="form-group mb-3">
-                                <label for="Title" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars($Title) ?>" placeholder="Name" required>
+                        <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
+                        <div class="form-group mb-3">
+                            <label for="Title" class="form-label">Name</label>
+                            <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars($Title) ?>" placeholder="Name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="Description" class="form-label">Details</label>
+                            <textarea class="form-control" name="Description" placeholder="Details" required><?= htmlspecialchars($Description) ?></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="Location" class="form-label">Location</label>
+                            <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location" required>
+                        </div>
+                        <div class="form-group mb-3 ">
+                            <div class="col-md-6">
+                                <label for="Max" class="form-label">Maximum</label>
+                                <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum">
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="Description" class="form-label">Details</label>
-                                <textarea class="form-control" name="Description" placeholder="Details" required><?= htmlspecialchars($Description) ?></textarea>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="Location" class="form-label">Location</label>
-                                <<<<<<< HEAD
-                                    <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location" required>
-                                    =======
-                                    <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location">
-                            </div>
-                            <div class="form-group mb-3 ">
-                                <div class="col-md-6">
-                                    <label for="Max" class="form-label">Maximum</label>
-                                    <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum">
-                                </div>
-                                >>>>>>> 027d2f296e4bb797841c8c4ab485d963d942049c
-                            </div>
-                            <div class="form-group mb-3 row">
-                                <div class="col-md-6">
-                                    <label for="StartDate" class="form-label">Start Date</label>
+                        </div>
+                        <div class="form-group mb-3 row">
+                            <div class="col-md-6">
+                                <label for="StartDate" class="form-label">Start Date</label>
 
-                                    <input type="date" class="form-control" name="StartDate"
-                                        value="<?= date('Y-m-d', strtotime($StartDate)) ?>" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="EndDate" class="form-label">End Date</label>
+                                <input type="date" class="form-control" name="StartDate"
+                                    value="<?= date('Y-m-d', strtotime($StartDate)) ?>" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="EndDate" class="form-label">End Date</label>
 
-                                    <input type="date" class="form-control" name="EndDate"
-                                        value="<?= date('Y-m-d', strtotime($EndDate)) ?>" required>
-                                </div>
+                                <input type="date" class="form-control" name="EndDate"
+                                    value="<?= date('Y-m-d', strtotime($EndDate)) ?>" required>
                             </div>
-                            <div class="form-group mb-3 row">
-                                <div class="col-md-6">
-                                    <label for="Max" class="form-label">Maximum</label>
-                                    <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum" required>
-                                </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                            <div class="col-md-6">
+                                <label for="Max" class="form-label">Maximum</label>
+                                <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum" required>
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="Status" class="form-label">Status</label>
-                                <select class="form-control" name="Status" required>
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                            </div>
-                            <input type="hidden" name="UserID" value="<?= htmlspecialchars($CreateBy) ?>">
-                            <div class="button-group">
-                                <input type="submit" class="btn btn-success" value="UPDATE">
-                            </div>
-                            </form>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="Status" class="form-label">Status</label>
+                            <select class="form-control" name="Status" required>
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="UserID" value="<?= htmlspecialchars($CreateBy) ?>">
+                        <div class="button-group">
+                            <input type="submit" class="btn btn-success" value="UPDATE">
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
