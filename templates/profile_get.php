@@ -140,7 +140,7 @@
                                             </form>
                                             <form action="/editactivity" method="get" class="d-flex justify-content-end">
                                                 <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
-                                                <button type="submit" class="btn btn-primary btn-sm mx-1" onclick="return confirmSubmission_edit()">
+                                                <button type="submit" class="btn btn-Warning btn-sm mx-1" onclick="return confirmSubmission_edit()">
                                                     Edit
                                                 </button>
                                             </form>

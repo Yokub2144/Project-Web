@@ -102,7 +102,7 @@ function dropregistration($UserID, $ActID): bool
 function joinActivity($ActID)
 {
     $conn = getConnection();
-    $sql = "SELECT u.UserID, u.Name, u.Email, u.Age, r.Status, r.ActID
+    $sql = "SELECT u.UserID, u.Name, u.Email, u.Age, u.Phone, r.Status, r.ActID, r.CheckedIn
             FROM user u 
             JOIN registration r ON u.UserID = r.UserID 
             WHERE r.ActID = ?";
