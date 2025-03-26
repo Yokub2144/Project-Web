@@ -48,7 +48,6 @@ if (isset($_GET['ActID'])) {
                 </div>
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
-<<<<<<< HEAD
 
                         <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
                         <div class="form-group mb-3">
@@ -67,13 +66,6 @@ if (isset($_GET['ActID'])) {
                             <div class="col-md-6">
                                 <label for="Max" class="form-label">Maximum</label>
                                 <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum">
-=======
-                        <form action="/editactivity" method="post">
-                            <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
-                            <div class="form-group mb-3">
-                                <label for="Title" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars($Title) ?>" placeholder="Name">
->>>>>>> 25cd666434e8fba6eeb4b605533afecb229411fa
                             </div>
                         </div>
                         <div class="form-group mb-3 row">
