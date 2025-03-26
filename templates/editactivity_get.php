@@ -81,24 +81,30 @@ if (isset($_GET['ActID'])) {
                             <?php if (!empty($ImageURL)): ?>
                                 <img src="<?= htmlspecialchars($ImageURL) ?>" class="current-image" id="currentImage">
                                 <button type="button" class="delete-image-btn" onclick="confirmDeleteImage()">×</button>
-                                <input type="hidden" name="current_image" id="currentImageInput" value="<?= htmlspecialchars($ImageURL) ?>">
                             <?php else: ?>
                                 <img src="img/5.png" class="current-image" id="currentImage">
-                                <input type="hidden" name="current_image" id="currentImageInput" value="">
                             <?php endif; ?>
                         </div>
 
-                        <!-- ส่วนอัพโหลดรูปภาพใหม่ -->
+                        <!-- Preview รูปภาพใหม่ -->
+                        <img id="imagePreview" src="#" alt="Preview" style="display: none;">
+
+                        <!-- ฟอร์มแก้ไขกิจกรรม -->
                         <form action="/editactivity" method="post" enctype="multipart/form-data" id="editForm">
-                            <input type="file" class="form-control mb-3" name="ImageURL" id="imageUpload" accept="image/*">
-                            <img id="imagePreview" alt="Image Preview">
-
-                            <!-- ปุ่มยกเลิกการอัปโหลด -->
-                            <button type="button" class="btn btn-secondary" id="cancelUpload" style="display: none;">ยกเลิก</button>
-
-                            <!-- ฟิลด์สำหรับระบุว่าต้องการลบรูปภาพ -->
+                            <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
+                            <input type="hidden" name="current_image" id="currentImageInput" value="<?= htmlspecialchars($ImageURL) ?>">
                             <input type="hidden" name="delete_image" id="deleteImageFlag" value="0">
 
+                            <!-- ฟิลด์สำหรับอัปโหลดรูปภาพใหม่ -->
+                            <div class="form-group mb-3">
+                                <label for="imageUpload" class="form-label">Upload New Image</label>
+                                <input type="file" class="form-control" name="ImageURL" id="imageUpload" accept="image/*">
+                            </div>
+
+                            <!-- ปุ่มยกเลิกการอัปโหลด -->
+                            <div class="image-actions">
+                                <button type="button" class="btn btn-secondary btn-sm" id="cancelUpload" style="display: none;">Cancel Upload</button>
+                            </div>
                             <div class="button-group">
                                 <a href="/homeactivity" class="btn btn-danger">CANCEL</a>
                             </div>
@@ -107,65 +113,61 @@ if (isset($_GET['ActID'])) {
 
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
-<<<<<<< HEAD
-=======
+                            <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
+                            <div class="form-group mb-3">
+                                <label for="Title" class="form-label">Name</label>
+                                <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars($Title) ?>" placeholder="Name" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Description" class="form-label">Details</label>
+                                <textarea class="form-control" name="Description" placeholder="Details" required><?= htmlspecialchars($Description) ?></textarea>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Location" class="form-label">Location</label>
+                                <<<<<<< HEAD
+                                    <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location" required>
+                                    =======
+                                    <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location">
+                            </div>
+                            <div class="form-group mb-3 ">
+                                <div class="col-md-6">
+                                    <label for="Max" class="form-label">Maximum</label>
+                                    <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum">
+                                </div>
+                                >>>>>>> 027d2f296e4bb797841c8c4ab485d963d942049c
+                            </div>
+                            <div class="form-group mb-3 row">
+                                <div class="col-md-6">
+                                    <label for="StartDate" class="form-label">Start Date</label>
 
->>>>>>> 027d2f296e4bb797841c8c4ab485d963d942049c
-                        <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
-                        <div class="form-group mb-3">
-                            <label for="Title" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars($Title) ?>" placeholder="Name" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="Description" class="form-label">Details</label>
-                            <textarea class="form-control" name="Description" placeholder="Details" required><?= htmlspecialchars($Description) ?></textarea>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="Location" class="form-label">Location</label>
-<<<<<<< HEAD
-                            <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location" required>
-=======
-                            <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location">
-                        </div>
-                        <div class="form-group mb-3 ">
-                            <div class="col-md-6">
-                                <label for="Max" class="form-label">Maximum</label>
-                                <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum">
-                            </div>
->>>>>>> 027d2f296e4bb797841c8c4ab485d963d942049c
-                        </div>
-                        <div class="form-group mb-3 row">
-                            <div class="col-md-6">
-                                <label for="StartDate" class="form-label">Start Date</label>
+                                    <input type="date" class="form-control" name="StartDate"
+                                        value="<?= date('Y-m-d', strtotime($StartDate)) ?>" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="EndDate" class="form-label">End Date</label>
 
-                                <input type="date" class="form-control" name="StartDate"
-                                    value="<?= date('Y-m-d', strtotime($StartDate)) ?>" required>
+                                    <input type="date" class="form-control" name="EndDate"
+                                        value="<?= date('Y-m-d', strtotime($EndDate)) ?>" required>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label for="EndDate" class="form-label">End Date</label>
-
-                                <input type="date" class="form-control" name="EndDate"
-                                    value="<?= date('Y-m-d', strtotime($EndDate)) ?>" required>
+                            <div class="form-group mb-3 row">
+                                <div class="col-md-6">
+                                    <label for="Max" class="form-label">Maximum</label>
+                                    <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group mb-3 row">
-                            <div class="col-md-6">
-                                <label for="Max" class="form-label">Maximum</label>
-                                <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum" required>
+                            <div class="form-group mb-3">
+                                <label for="Status" class="form-label">Status</label>
+                                <select class="form-control" name="Status" required>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="Status" class="form-label">Status</label>
-                            <select class="form-control" name="Status" required>
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
-                            </select>
-                        </div>
-                        <input type="hidden" name="UserID" value="<?= htmlspecialchars($CreateBy) ?>">
-                        <div class="button-group">
-                            <input type="submit" class="btn btn-success" value="UPDATE">
-                        </div>
-                        </form>
+                            <input type="hidden" name="UserID" value="<?= htmlspecialchars($CreateBy) ?>">
+                            <div class="button-group">
+                                <input type="submit" class="btn btn-success" value="UPDATE">
+                            </div>
+                            </form>
                     </div>
                 </div>
             </div>
