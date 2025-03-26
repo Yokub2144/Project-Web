@@ -17,6 +17,7 @@ function getUserEnrollmentByUserId(int $UserID): mysqli_result|bool
     a.Max,
     a.StartDate,
     a.EndDate,
+    a.ImageURL,
     a.Status AS ActivityStatus,
     u.UserId,
     u.Name AS UserName,
@@ -27,6 +28,7 @@ function getUserEnrollmentByUserId(int $UserID): mysqli_result|bool
     r.ActID,
     r.Status AS RegistrationStatus,
     r.CheckedIn,
+   
     creator.Name AS CreatorName
     FROM
     eventmanagement.activity a
@@ -97,7 +99,8 @@ function dropregistration($UserID, $ActID): bool
         return false;
     }
 }
-function joinActivity($ActID) {
+function joinActivity($ActID)
+{
     $conn = getConnection();
     $sql = "SELECT u.UserID, u.Name, u.Email, u.Age, r.Status, r.ActID
             FROM user u 
@@ -146,5 +149,3 @@ function updateCheckInStatus($UserID, $ActID, $CheckedIn): bool
         return false;
     }
 }
-
-

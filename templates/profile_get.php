@@ -60,56 +60,55 @@
 
 
         <!-- ส่วน Now: กิจกรรมที่เข้าร่วม -->
-        <h2 class="text-left mt-5 mb-4" style="color: #f2f2f2;">Now</h2>
-        <div class="table">
-            <div class="row">
-                <?php foreach ($data['registration'] as $registration): ?>
-                    <div class="col-md-11 mb-4">
-                        <div class="card" style="background-color: rgba(60, 73, 85, 0); color: #f2f2f2;">
-                            <div class="row">
-                                <div class="col-md-4 mr-auto">
-                                    <!-- แสดงรูปภาพกิจกรรม -->
-                                    <?php if (!empty($registration['ImageURL'])): ?>
-                                        <img src="<?= $registration['ImageURL'] ?>" alt="Activity Image"
-                                            style="width: 100%; height: auto; max-height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
-                                    <?php endif; ?>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $registration['Title'] ?></h5>
-                                        <p class="card-text"><strong>วันเริ่มกิจกรรม :</strong> <?= $registration['StartDate'] ?></p>
-                                        <p class="card-text"><strong>วันสิ้นสุดกิจกรรม :</strong> <?= $registration['EndDate'] ?></p>
-                                        <p class="card-text"><strong>ผู้สร้างกิจกรรม :</strong> <?= $registration['CreatorName'] ?></p>
-                                        <p class="card-text"><strong>สถานะ:</strong> <?= $registration['RegistrationStatus'] ?></p>
-                                        <?php if ($registration['RegistrationStatus'] === 'Approved'): ?>
-                                            <?php if (empty($registration['CheckedIn']) || !$registration['CheckedIn']): ?>
-                                                <form action="/checkin" method="post" class="text-center" onsubmit="return confirmCheckIn(this);">
-                                                    <input type="hidden" name="UserID" value="<?= $data['User']['UserID'] ?>">
-                                                    <input type="hidden" name="ActID" value="<?= $registration['ActID'] ?>">
-                                                    <input type="hidden" name="JoinCode" id="JoinCodeInput">
-                                                    <button type="submit" class="btn btn-success btn-sm" name="checkin">
-                                                        เช็คอิน
-                                                    </button>
-                                                </form>
-                                            <?php else: ?>
-                                                <p class="text-success"><strong>เช็คอินแล้ว</strong></p>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                        <form action="/profile" method="post" class="text-center">
-                                            <input type="hidden" name="UserID" value="<?= $data['User']['UserID'] ?>">
-                                            <input type="hidden" name="ActID" value="<?= $registration['ActID'] ?>">
-                                            <button type="submit" class="btn btn-danger btn-sm" name="cancel" onclick="return confirmSubmission()">
-                                                ยกเลิกการเข้าร่วม
+        <?php foreach ($data['registration'] as $registration): ?>
+            <div class="col-md-11 mb-4">
+                <div class="card" style="background-color: rgba(60, 73, 85, 0); color: #f2f2f2;">
+                    <div class="row">
+                        <div class="col-md-4 mr-auto">
+                            <!-- แสดงรูปภาพกิจกรรม -->
+                            <?php if (!empty($registration['ImageURL'])): ?>
+                                <img src="<?= htmlspecialchars($registration['ImageURL']) ?>" alt="Activity Image"
+                                    style="width: 100%; height: auto; max-height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                            <?php else: ?>
+                                <!-- รูปภาพเริ่มต้นในกรณีที่ไม่มีรูปภาพ -->
+                                <img src="img/default_activity.png" alt="Default Activity Image"
+                                    style="width: 100%; height: auto; max-height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= htmlspecialchars($registration['Title']) ?></h5>
+                                <p class="card-text"><strong>วันเริ่มกิจกรรม :</strong> <?= htmlspecialchars($registration['StartDate']) ?></p>
+                                <p class="card-text"><strong>วันสิ้นสุดกิจกรรม :</strong> <?= htmlspecialchars($registration['EndDate']) ?></p>
+                                <p class="card-text"><strong>ผู้สร้างกิจกรรม :</strong> <?= htmlspecialchars($registration['CreatorName']) ?></p>
+                                <p class="card-text"><strong>สถานะ:</strong> <?= htmlspecialchars($registration['RegistrationStatus']) ?></p>
+                                <?php if ($registration['RegistrationStatus'] === 'Approved'): ?>
+                                    <?php if (empty($registration['CheckedIn']) || !$registration['CheckedIn']): ?>
+                                        <form action="/checkin" method="post" class="text-center" onsubmit="return confirmCheckIn(this);">
+                                            <input type="hidden" name="UserID" value="<?= htmlspecialchars($data['User']['UserID']) ?>">
+                                            <input type="hidden" name="ActID" value="<?= htmlspecialchars($registration['ActID']) ?>">
+                                            <input type="hidden" name="JoinCode" id="JoinCodeInput">
+                                            <button type="submit" class="btn btn-success btn-sm" name="checkin">
+                                                เช็คอิน
                                             </button>
                                         </form>
-                                    </div>
-                                </div>
+                                    <?php else: ?>
+                                        <p class="text-success"><strong>เช็คอินแล้ว</strong></p>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <form action="/profile" method="post" class="text-center">
+                                    <input type="hidden" name="UserID" value="<?= htmlspecialchars($data['User']['UserID']) ?>">
+                                    <input type="hidden" name="ActID" value="<?= htmlspecialchars($registration['ActID']) ?>">
+                                    <button type="submit" class="btn btn-danger btn-sm" name="cancel" onclick="return confirmSubmission()">
+                                        ยกเลิกการเข้าร่วม
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                </div>
             </div>
-        </div>
+        <?php endforeach; ?>
 
         <!-- ส่วน Creator: กิจกรรมที่สร้าง -->
         <h2 class="text-left mt-5 mb-4" style="color: #f2f2f2;">Creator</h2>
