@@ -145,3 +145,8 @@ body {
 .card .card-text {
     font-size: 1em;
 }
+.activity-image {
+    width: 100px; /* กำหนดขนาดให้รูปเท่ากัน */
+    height: 100px;
+    object-fit: cover; /* ป้องกันการบิดเบือนของรูป */
+}

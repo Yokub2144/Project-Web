@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Festival Card</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style_detalis.css">
 </head>
 
@@ -40,7 +41,7 @@
                 <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
                 <input type="hidden" name="Actstatus" value="<?= $activity['Status'] ?>">
                 <input type="hidden" name="regstatus" value="Pending">
-                <input type="submit" name="register" value="ลงทะเบียน" class="register-button" onclick="return confirm('คุณต้องการลงทะเบียนกิจกรรมนี้ใช่หรือไม่?')">
+                <input type="submit" name="register" value="ลงทะเบียน" class="btn btn-primary btn-lg" onclick="return confirm('คุณต้องการลงทะเบียนกิจกรรมนี้ใช่หรือไม่?')">
             </form>
         </div>
     </div>

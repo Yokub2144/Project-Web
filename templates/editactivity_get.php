@@ -38,11 +38,9 @@ if (isset($_GET['ActID'])) {
                 <div class="col-md-4 left-box">
                     <div class="card-body text-center">
                         <h2 class="card-title mb-4" style="font-size: 20px;">EDIT EVENT</h2>
-<<<<<<< HEAD
                         <img src="img/5.png" class="img-fluid rounded-start mb-3" alt="Event Image">
                         <form action="/editactivity" method="post" enctype="multipart/form-data">
                             <input type="file" class="form-control" name="ImageURL" placeholder="ImageURL" accept="image/*" >
-=======
 
                         <!-- ส่วนแสดงรูปภาพปัจจุบันและปุ่มลบ -->
                         <div class="image-preview-container">
@@ -73,7 +71,6 @@ if (isset($_GET['ActID'])) {
                             <div class="image-actions">
                                 <button type="button" class="btn btn-secondary btn-sm" id="cancelUpload" style="display: none;">Cancel Upload</button>
                             </div>
->>>>>>> d15ec4d9e892c8fc0db88f5e65840fca7969bd05
                             <div class="button-group">
                                 <button class="btn btn-danger">CANCEL</button>
                             </div>
@@ -81,10 +78,7 @@ if (isset($_GET['ActID'])) {
                 </div>
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
-<<<<<<< HEAD
 
-=======
->>>>>>> d15ec4d9e892c8fc0db88f5e65840fca7969bd05
                         <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
                         <div class="form-group mb-3">
                             <label for="Title" class="form-label">Name</label>
@@ -96,11 +90,8 @@ if (isset($_GET['ActID'])) {
                         </div>
                         <div class="form-group mb-3">
                             <label for="Location" class="form-label">Location</label>
-<<<<<<< HEAD
                             <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location">
-=======
                             <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location" required>
->>>>>>> d15ec4d9e892c8fc0db88f5e65840fca7969bd05
                         </div>
                         <div class="form-group mb-3 ">
                             <div class="col-md-6">
