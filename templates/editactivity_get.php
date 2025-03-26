@@ -111,6 +111,7 @@ if (isset($_GET['ActID'])) {
                     </div>
                 </div>
 
+                
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
                         <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
