@@ -147,3 +147,4 @@ function updateCheckInStatus($UserID, $ActID, $CheckedIn): bool
     }
 }
 
+

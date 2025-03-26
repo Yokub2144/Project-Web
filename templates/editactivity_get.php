@@ -107,6 +107,10 @@ if (isset($_GET['ActID'])) {
 
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 027d2f296e4bb797841c8c4ab485d963d942049c
                         <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
                         <div class="form-group mb-3">
                             <label for="Title" class="form-label">Name</label>
@@ -118,7 +122,17 @@ if (isset($_GET['ActID'])) {
                         </div>
                         <div class="form-group mb-3">
                             <label for="Location" class="form-label">Location</label>
+<<<<<<< HEAD
                             <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location" required>
+=======
+                            <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location">
+                        </div>
+                        <div class="form-group mb-3 ">
+                            <div class="col-md-6">
+                                <label for="Max" class="form-label">Maximum</label>
+                                <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum">
+                            </div>
+>>>>>>> 027d2f296e4bb797841c8c4ab485d963d942049c
                         </div>
                         <div class="form-group mb-3 row">
                             <div class="col-md-6">
