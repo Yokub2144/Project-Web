@@ -18,14 +18,12 @@
     <a class="nav-link" aria-current="page" href="#">Request</a>
   </li>
   <li class="nav-item">
-    <form action="static" method="get">
-        <input type="hidden" name="ActID" value="<?php echo htmlspecialchars($ActID); ?>">
-        <button type="submit" class="nav-link">Static</button>
+    <form action="/namecheck" method="get">
+        <input type="hidden" name="ActID" value="<?php echo htmlspecialchars($_GET['ActID']); ?>">
+        
+        <button type="submit" class="nav-link">Name</button>
     </form>
 </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Check</a>
-  </li>
 </ul>
             <h1 class="text-center mb-4">Activity Participants</h1>
             <?php

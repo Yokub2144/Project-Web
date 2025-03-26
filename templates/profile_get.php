@@ -82,27 +82,29 @@
                                 <p class="card-text"><strong>วันสิ้นสุดกิจกรรม :</strong> <?= htmlspecialchars($registration['EndDate']) ?></p>
                                 <p class="card-text"><strong>ผู้สร้างกิจกรรม :</strong> <?= htmlspecialchars($registration['CreatorName']) ?></p>
                                 <p class="card-text"><strong>สถานะ:</strong> <?= htmlspecialchars($registration['RegistrationStatus']) ?></p>
-                                <?php if ($registration['RegistrationStatus'] === 'Approved'): ?>
-                                    <?php if (empty($registration['CheckedIn']) || !$registration['CheckedIn']): ?>
-                                        <form action="/checkin" method="post" class="text-center" onsubmit="return confirmCheckIn(this);">
-                                            <input type="hidden" name="UserID" value="<?= htmlspecialchars($data['User']['UserID']) ?>">
-                                            <input type="hidden" name="ActID" value="<?= htmlspecialchars($registration['ActID']) ?>">
-                                            <input type="hidden" name="JoinCode" id="JoinCodeInput">
-                                            <button type="submit" class="btn btn-success btn-sm" name="checkin">
-                                                เช็คอิน
-                                            </button>
-                                        </form>
-                                    <?php else: ?>
-                                        <p class="text-success"><strong>เช็คอินแล้ว</strong></p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <?php if ($registration['RegistrationStatus'] === 'Approved'): ?>
+                                        <?php if (empty($registration['CheckedIn']) || !$registration['CheckedIn']): ?>
+                                            <form action="/checkin" method="post" class="text-center" onsubmit="return confirmCheckIn(this);">
+                                                <input type="hidden" name="UserID" value="<?= htmlspecialchars($data['User']['UserID']) ?>">
+                                                <input type="hidden" name="ActID" value="<?= htmlspecialchars($registration['ActID']) ?>">
+                                                <input type="hidden" name="JoinCode" id="JoinCodeInput">
+                                                <button type="submit" class="btn btn-success btn-sm" name="checkin">
+                                                    เช็คอิน
+                                                </button>
+                                            </form>
+                                        <?php else: ?>
+                                            <p class="text-success"><strong>เช็คอินแล้ว</strong></p>
+                                        <?php endif; ?>
                                     <?php endif; ?>
-                                <?php endif; ?>
-                                <form action="/profile" method="post" class="text-center">
-                                    <input type="hidden" name="UserID" value="<?= htmlspecialchars($data['User']['UserID']) ?>">
-                                    <input type="hidden" name="ActID" value="<?= htmlspecialchars($registration['ActID']) ?>">
-                                    <button type="submit" class="btn btn-danger btn-sm" name="cancel" onclick="return confirmSubmission()">
-                                        ยกเลิกการเข้าร่วม
-                                    </button>
-                                </form>
+                                    <form action="/profile" method="post" class="text-center">
+                                        <input type="hidden" name="UserID" value="<?= htmlspecialchars($data['User']['UserID']) ?>">
+                                        <input type="hidden" name="ActID" value="<?= htmlspecialchars($registration['ActID']) ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm" name="cancel" onclick="return confirmSubmission()">
+                                            ยกเลิกการเข้าร่วม
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,7 +142,7 @@
                                             </form>
                                             <form action="/editactivity" method="get" class="d-flex justify-content-end">
                                                 <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
-                                                <button type="submit" class="btn btn-primary btn-sm mx-1" onclick="return confirmSubmission_edit()">
+                                                <button type="submit" class="btn btn-warning btn-sm mx-1" onclick="return confirmSubmission_edit()">
                                                     Edit
                                                 </button>
                                             </form>
