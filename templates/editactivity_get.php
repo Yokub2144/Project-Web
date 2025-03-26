@@ -40,7 +40,7 @@ if (isset($_GET['ActID'])) {
                         <h2 class="card-title mb-4" style="font-size: 20px;">EDIT EVENT</h2>
                         <img src="img/5.png" class="img-fluid rounded-start mb-3" alt="Event Image">
                         <form action="/editactivity" method="post" enctype="multipart/form-data">
-                            <input type="file" class="form-control" name="ImageURL" placeholder="ImageURL" accept="image/*" required>
+                            <input type="file" class="form-control" name="ImageURL" placeholder="ImageURL" accept="image/*" >
                             <div class="button-group">
                                 <button class="btn btn-danger">CANCEL</button>
                             </div>

@@ -15,10 +15,10 @@
         <div class="profile-header">
 
             <img src="<?php echo $User['ImageProfileURL']; ?>" alt="" width="200" height="200" style="border-radius: 50%; object-fit: cover; margin: 20px;">
-            <form action="/editprofile" method="get" class="d-flex justify-content-end">
+            <form action="/updateprofile" method="get" class="d-flex justify-content-end">
                 <input type="hidden" name="ActID" value="<?= $activity['ActID'] ?>">
-                <button type="submit" class="btn btn-primary btn-sm mx-1">
-                    แก้ไขโปรไฟล์
+                <button type="submit" class="btn btn-primary btn-sm mx-1 rounded-pill">
+                    <i class="fas fa-user-edit me-2"></i>แก้ไขโปรไฟล์
                 </button>
             </form>
             <div class="profile-info">

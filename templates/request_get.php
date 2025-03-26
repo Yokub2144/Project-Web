@@ -13,7 +13,20 @@
 <body>
     <div class="container mt-5">
         <div class="card shadow-lg p-4">
-
+        <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="#">Request</a>
+  </li>
+  <li class="nav-item">
+    <form action="static" method="get">
+        <input type="hidden" name="ActID" value="<?php echo htmlspecialchars($ActID); ?>">
+        <button type="submit" class="nav-link">Static</button>
+    </form>
+</li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Check</a>
+  </li>
+</ul>
             <h1 class="text-center mb-4">Activity Participants</h1>
             <?php
             if (isset($_GET['ActID']) || isset($_POST['ActID'])) {
