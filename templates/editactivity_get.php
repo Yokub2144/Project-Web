@@ -11,6 +11,7 @@ if (isset($_GET['ActID'])) {
         $StartDate = $activity['StartDate'];
         $EndDate = $activity['EndDate'];
         $Status = $activity['Status'];
+        $ImageURL = $activity['ImageURL'];
     } else {
         echo "ไม่พบกิจกรรม";
         $Title = $Description = $Location = $Max = $StartDate = $EndDate = $Status = "";
@@ -19,7 +20,6 @@ if (isset($_GET['ActID'])) {
     echo "ไม่ได้รับ ActID";
     $Title = $Description = $Location = $Max = $StartDate = $EndDate = $Status = "";
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +29,43 @@ if (isset($_GET['ActID'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
     <link rel="stylesheet" href="/css/style_editactivity.css">
+    <style>
+        .image-preview-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .current-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+        }
+
+        .delete-image-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .delete-image-btn:hover {
+            background: rgba(255, 0, 0, 0.9);
+        }
+
+        #imagePreview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            display: none;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,59 +75,76 @@ if (isset($_GET['ActID'])) {
                 <div class="col-md-4 left-box">
                     <div class="card-body text-center">
                         <h2 class="card-title mb-4" style="font-size: 20px;">EDIT EVENT</h2>
-                        <img src="img/5.png" class="img-fluid rounded-start mb-3" alt="Event Image">
-                        <form action="/editactivity" method="post" enctype="multipart/form-data">
-                            <input type="file" class="form-control" name="ImageURL" placeholder="ImageURL" accept="image/*" >
+
+                        <!-- ส่วนแสดงรูปภาพปัจจุบันและปุ่มลบ -->
+                        <div class="image-preview-container">
+                            <?php if (!empty($ImageURL)): ?>
+                                <img src="<?= htmlspecialchars($ImageURL) ?>" class="current-image" id="currentImage">
+                                <button type="button" class="delete-image-btn" onclick="confirmDeleteImage()">×</button>
+                                <input type="hidden" name="current_image" id="currentImageInput" value="<?= htmlspecialchars($ImageURL) ?>">
+                            <?php else: ?>
+                                <img src="img/5.png" class="current-image" id="currentImage">
+                                <input type="hidden" name="current_image" id="currentImageInput" value="">
+                            <?php endif; ?>
+                        </div>
+
+                        <!-- ส่วนอัพโหลดรูปภาพใหม่ -->
+                        <form action="/editactivity" method="post" enctype="multipart/form-data" id="editForm">
+                            <input type="file" class="form-control mb-3" name="ImageURL" id="imageUpload" accept="image/*">
+                            <img id="imagePreview" alt="Image Preview">
+
+                            <!-- ปุ่มยกเลิกการอัปโหลด -->
+                            <button type="button" class="btn btn-secondary" id="cancelUpload" style="display: none;">ยกเลิก</button>
+
+                            <!-- ฟิลด์สำหรับระบุว่าต้องการลบรูปภาพ -->
+                            <input type="hidden" name="delete_image" id="deleteImageFlag" value="0">
+
                             <div class="button-group">
-                                <button class="btn btn-danger">CANCEL</button>
+                                <a href="/homeactivity" class="btn btn-danger">CANCEL</a>
                             </div>
                     </div>
                 </div>
+
                 <div class="col-md-8 d-flex align-items-center right-box">
                     <div class="card-body border-2">
-<<<<<<< HEAD
-
                         <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
                         <div class="form-group mb-3">
                             <label for="Title" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars($Title) ?>" placeholder="Name">
+                            <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars($Title) ?>" placeholder="Name" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="Description" class="form-label">Details</label>
-                            <textarea class="form-control" name="Description" placeholder="Details"><?= htmlspecialchars($Description) ?></textarea>
+                            <textarea class="form-control" name="Description" placeholder="Details" required><?= htmlspecialchars($Description) ?></textarea>
                         </div>
                         <div class="form-group mb-3">
                             <label for="Location" class="form-label">Location</label>
-                            <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location">
-                        </div>
-                        <div class="form-group mb-3 ">
-                            <div class="col-md-6">
-                                <label for="Max" class="form-label">Maximum</label>
-                                <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum">
-=======
-                        <form action="/editactivity" method="post">
-                            <input type="hidden" name="ActID" value="<?= htmlspecialchars($ActID) ?>">
-                            <div class="form-group mb-3">
-                                <label for="Title" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="Title" value="<?= htmlspecialchars($Title) ?>" placeholder="Name">
->>>>>>> 25cd666434e8fba6eeb4b605533afecb229411fa
-                            </div>
+                            <input type="text" class="form-control" name="Location" value="<?= htmlspecialchars($Location) ?>" placeholder="Location" required>
                         </div>
                         <div class="form-group mb-3 row">
                             <div class="col-md-6">
                                 <label for="StartDate" class="form-label">Start Date</label>
-                                <input type="date" class="form-control" name="StartDate" value="<?= htmlspecialchars($StartDate) ?>" placeholder="Start Date">
+
+                                <input type="date" class="form-control" name="StartDate"
+                                    value="<?= date('Y-m-d', strtotime($StartDate)) ?>" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="EndDate" class="form-label">End Date</label>
-                                <input type="date" class="form-control" name="EndDate" value="<?= htmlspecialchars($EndDate) ?>" placeholder="End Date">
+
+                                <input type="date" class="form-control" name="EndDate"
+                                    value="<?= date('Y-m-d', strtotime($EndDate)) ?>" required>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                            <div class="col-md-6">
+                                <label for="Max" class="form-label">Maximum</label>
+                                <input type="number" class="form-control" name="Max" value="<?= htmlspecialchars($Max) ?>" placeholder="Maximum" required>
                             </div>
                         </div>
                         <div class="form-group mb-3">
                             <label for="Status" class="form-label">Status</label>
-                            <select class="form-control" name="Status">
-                                <option value="Active" <?= $Status == 'Active' ? 'selected' : '' ?>>Active</option>
-                                <option value="Inactive" <?= $Status == 'Inactive' ? 'selected' : '' ?>>Inactive</option>
+                            <select class="form-control" name="Status" required>
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
                             </select>
                         </div>
                         <input type="hidden" name="UserID" value="<?= htmlspecialchars($CreateBy) ?>">
@@ -103,6 +157,60 @@ if (isset($_GET['ActID'])) {
             </div>
         </div>
     </div>
+
+    <script>
+        // แสดงตัวอย่างรูปภาพเมื่อเลือกไฟล์
+        document.getElementById('imageUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+
+                    // ซ่อนรูปภาพปัจจุบันถ้ามี
+                    const currentImage = document.getElementById('currentImage');
+                    if (currentImage) {
+                        currentImage.style.opacity = '0.5'; // ลดความชัดของรูปเดิม
+                    }
+
+                    // แสดงปุ่มยกเลิก
+                    document.getElementById('cancelUpload').style.display = 'inline-block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // ฟังก์ชันยกเลิกการอัปโหลดรูปภาพใหม่
+        document.getElementById('cancelUpload').addEventListener('click', function() {
+            const preview = document.getElementById('imagePreview');
+            preview.src = '';
+            preview.style.display = 'none';
+
+            const currentImage = document.getElementById('currentImage');
+            if (currentImage) {
+                currentImage.style.opacity = '1'; // คืนค่าความชัด
+            }
+
+            this.style.display = 'none';
+            document.getElementById('imageUpload').value = '';
+        });
+
+        // ฟังก์ชันยืนยันการลบรูปภาพ
+        function confirmDeleteImage() {
+            if (confirm('คุณต้องการลบรูปภาพนี้ใช่หรือไม่?')) {
+                document.getElementById('deleteImageFlag').value = '1';
+                document.getElementById('currentImage').style.display = 'none';
+                document.getElementById('currentImageInput').value = '';
+
+                const defaultImage = 'img/5.png';
+                const currentImage = document.getElementById('currentImage');
+                currentImage.src = defaultImage;
+                currentImage.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 
 </html>

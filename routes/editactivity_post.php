@@ -16,8 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $Status = $_POST['Status'];
     $CreateBy = $_SESSION['UserID'];
 
+    // ตรวจสอบค่ารูปภาพเดิม
+    $ImageURL = $_POST['current_image'];
+
     // ตรวจสอบว่ามีไฟล์รูปภาพใหม่อัปโหลดมาหรือไม่
-    $ImageURL = $_POST['ImageURL']; 
     if (isset($_FILES['ImageURL']) && $_FILES['ImageURL']['error'] === UPLOAD_ERR_OK) {
         $uploadDir = 'uploadsactivity/';
         if (!is_dir($uploadDir)) {
